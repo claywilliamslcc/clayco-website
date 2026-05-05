@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ClayCo — Empowering Student Industries</title>
+<style>
+  :root {
+    --ink: #111;
+    --paper: #fff;
+    --rule: #d8d8d8;
+    --link: #1B4F8C;
+    --link-visited: #5a3a8c;
+    --gold: #F5B829;
+    --soft: #6a6a6a;
+  }
+  html { font-size: 17px; }
+  body {
+    font-family: Georgia, "Times New Roman", Times, serif;
+    color: var(--ink);
+    background: var(--paper);
+    margin: 0;
+    line-height: 1.55;
+  }
+  main {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 2.5rem 1.25rem 4rem;
+  }
+  /* Masthead */
+  .masthead {
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  .wordmark {
+    font-size: 2.6rem;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    color: var(--link);
+    line-height: 1;
+    margin: 0;
+  }
+  .wordmark .sm {
+    font-size: 0.45em;
+    vertical-align: super;
+    color: var(--soft);
+    margin-left: 0.15em;
+  }
+  .tagline {
+    font-style: italic;
+    color: var(--ink);
+    margin: 0.35rem 0 0;
+    font-size: 1rem;
+  }
+  .gold-rule {
+    width: 4rem;
+    height: 3px;
+    background: var(--gold);
+    margin: 0.85rem 0 0;
+    border: 0;
+  }
+  nav.primary {
+    margin-top: 1rem;
+    font-size: 0.95rem;
+  }
+  nav.primary a { margin-right: 1.25rem; }
+  /* Links — Berkshire treatment */
+  a { color: var(--link); text-decoration: underline; }
+  a:visited { color: var(--link-visited); }
+  a:hover { background: #fffbe6; }
+  /* Section headers */
+  h2 {
+    font-size: 1.05rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 700;
+    color: var(--ink);
+    margin: 2.5rem 0 0.75rem;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 0.25rem;
+  }
+  h3 {
+    font-size: 1.4rem;
+    font-weight: 400;
+    margin: 0 0 0.25rem;
+    color: var(--ink);
+  }
+  /* Lists */
+  ul.bare { list-style: none; padding: 0; margin: 0; }
+  ul.bare li {
+    padding: 0.55rem 0;
+    border-bottom: 1px dotted var(--rule);
+  }
+  ul.bare li:last-child { border-bottom: 0; }
+  .meta { color: var(--soft); font-size: 0.92rem; }
+  .biz {
+    font-variant: small-caps;
+    letter-spacing: 0.02em;
+    color: var(--ink);
+  }
+  /* Mission */
+  .mission p {
+    font-size: 1rem;
+    margin: 0.5rem 0;
+  }
+  /* Page divider in mockup */
+  .mockup-divider {
+    margin: 5rem 0 0;
+    border: 0;
+    border-top: 2px dashed #c0c0c0;
+  }
+  .mockup-label {
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    color: #999;
+    margin: 1rem 0 -1rem;
+  }
+  /* Sample post */
+  .post-meta {
+    color: var(--soft);
+    font-size: 0.92rem;
+    margin: 0.25rem 0 1.25rem;
+  }
+  .post-body p { margin: 0.85rem 0; font-size: 1.02rem; }
+  .embed {
+    background: #f3f3f3;
+    border: 1px solid var(--rule);
+    aspect-ratio: 16 / 9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--soft);
+    font-style: italic;
+    margin: 1.25rem 0;
+    font-size: 0.9rem;
+  }
+  footer {
+    margin-top: 4rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--rule);
+    font-size: 0.85rem;
+    color: var(--soft);
+  }
+</style>
+</head>
+<body>
+<main>
+
+  <!-- ============================================== -->
+  <!-- HOMEPAGE                                       -->
+  <!-- ============================================== -->
+  <header class="masthead">
+    <h1 class="wordmark">ClayCo<span class="sm">SM</span></h1>
+    <p class="tagline">Empowering Student Industries.</p>
+    <hr class="gold-rule">
+    <nav class="primary">
+      <a href="#industries">Industries</a>
+      <a href="#posts">Recent Posts</a>
+      <a href="#about">About</a>
+    </nav>
+  </header>
+
+  <h2 id="industries">Industries — Spring 2026</h2>
+  <p class="meta">A directory of student-run businesses publishing under the ClayCo umbrella.</p>
+  <ul class="bare">
+    <li><a href="#biz">Riverside Bicycle Co.</a> — Sustainable bike repair and refurbishment, Eugene OR.</li>
+    <li><a href="#">Eugene Print House</a> — Risograph and screen printing for local artists.</li>
+    <li><a href="#">Cascade Tutoring</a> — Peer tutoring for Lane and OSU students.</li>
+    <li><a href="#">Willamette Roastery</a> — Single-origin coffee, cooperative model.</li>
+    <li><a href="#">Pacific Threads</a> — Vintage clothing curation and resale.</li>
+    <li><a href="#">North Hills Dogwalking</a> — Neighborhood pet care, Eugene area.</li>
+    <li><a href="#">Studio 451</a> — Small-batch ceramics from a CEN 451 collective.</li>
+    <li><span class="meta">…and 19 more, listed alphabetically.</span></li>
+  </ul>
+
+  <h2 id="posts">Recent Posts</h2>
+  <ul class="bare">
+    <li>
+      <span class="meta">May 4 · </span>
+      <span class="biz">Riverside Bicycle Co.</span> ·
+      <a href="#post">Promo Video: How We Source Frames</a>
+    </li>
+    <li>
+      <span class="meta">May 3 · </span>
+      <span class="biz">Eugene Print House</span> ·
+      <a href="#">Blog: A Day at the Riso</a>
+    </li>
+    <li>
+      <span class="meta">May 2 · </span>
+      <span class="biz">Willamette Roastery</span> ·
+      <a href="#">Social: Roast schedule for May</a>
+    </li>
+    <li>
+      <span class="meta">May 1 · </span>
+      <span class="biz">Cascade Tutoring</span> ·
+      <a href="#">Blog: Why office hours matter</a>
+    </li>
+    <li>
+      <span class="meta">Apr 30 · </span>
+      <span class="biz">Pacific Threads</span> ·
+      <a href="#">Social: Saturday market preview</a>
+    </li>
+    <li>
+      <span class="meta">Apr 29 · </span>
+      <span class="biz">Studio 451</span> ·
+      <a href="#">Promo Video: First firing of the term</a>
+    </li>
+    <li><a href="#">Older posts &rarr;</a></li>
+  </ul>
+
+  <h2 id="about">About ClayCo</h2>
+  <div class="mission">
+    <p>At ClayCo, we are dedicated to showcasing the innovative businesses created by students. Our platform provides a space for students to exhibit their entrepreneurial ventures and connect with potential collaborators and investors.</p>
+    <p>We believe in empowering the next generation of leaders and change-makers by giving them the opportunity to present their unique business ideas and projects.</p>
+    <p>Join us in celebrating the creativity and ambition of student entrepreneurs. Whether you are looking to explore inspiring ventures or share your own, ClayCo is the perfect platform for you.</p>
+  </div>
+
+  <footer>
+    A COMM 130 project · Lane Community College · Spring 2026 ·
+    <a href="#">williamsc@lanecc.edu</a>
+  </footer>
+
+  <!-- ============================================== -->
+  <!-- SAMPLE BUSINESS PAGE                           -->
+  <!-- ============================================== -->
+  <hr class="mockup-divider">
+  <p class="mockup-label">Mockup view 2 — sample business page</p>
+
+  <header class="masthead" style="margin-top: 2.5rem;">
+    <h1 class="wordmark">ClayCo<span class="sm">SM</span></h1>
+    <p class="tagline">Empowering Student Industries.</p>
+    <hr class="gold-rule">
+    <nav class="primary">
+      <a href="#industries">Industries</a>
+      <a href="#posts">Recent Posts</a>
+      <a href="#about">About</a>
+    </nav>
+  </header>
+
+  <h2 id="biz">Riverside Bicycle Co.</h2>
+  <p class="meta">Sustainable bike repair and refurbishment · Eugene, OR · Founded Spring 2026</p>
+
+  <p>Riverside Bicycle Co. believes the most sustainable bike is one that already exists. We repair, refurbish, and rehome bicycles that would otherwise end up in a landfill — sourced from estate sales, OSU surplus, and donations.</p>
+
+  <h2>Posts from Riverside Bicycle Co.</h2>
+  <ul class="bare">
+    <li><span class="meta">May 4 · </span><a href="#post">Promo Video: How We Source Frames</a></li>
+    <li><span class="meta">Apr 28 · </span><a href="#">Blog: Why we don't sell new bikes</a></li>
+    <li><span class="meta">Apr 21 · </span><a href="#">Social: Saturday market schedule</a></li>
+    <li><span class="meta">Apr 14 · </span><a href="#">Blog: Spring tune-up specials</a></li>
+    <li><span class="meta">Apr 7 · </span><a href="#">Social: Workshop hours</a></li>
+  </ul>
+
+  <!-- ============================================== -->
+  <!-- SAMPLE POST PAGE                               -->
+  <!-- ============================================== -->
+  <hr class="mockup-divider">
+  <p class="mockup-label">Mockup view 3 — sample post page</p>
+
+  <header class="masthead" style="margin-top: 2.5rem;">
+    <h1 class="wordmark">ClayCo<span class="sm">SM</span></h1>
+    <p class="tagline">Empowering Student Industries.</p>
+    <hr class="gold-rule">
+    <nav class="primary">
+      <a href="#industries">Industries</a>
+      <a href="#posts">Recent Posts</a>
+      <a href="#about">About</a>
+    </nav>
+  </header>
+
+  <h3 id="post">Promo Video: How We Source Frames</h3>
+  <p class="post-meta">
+    <a href="#biz" class="biz">Riverside Bicycle Co.</a> · May 4, 2026 · Promo Video
+  </p>
+
+  <div class="embed">[embedded video — 16:9 placeholder]</div>
+
+  <div class="post-body">
+    <p>We started Riverside on the premise that the most sustainable bike is one that already exists. This video walks through where our frames come from — estate sales, OSU surplus, donations from cyclists upgrading their rides.</p>
+    <p>The short version: we don't buy new. We buy used, fix what's broken, and pass it on at a price a student can afford. The full pipeline is in the video above, but the gist is that there's a lot of perfectly good steel sitting in garages, and our job is to get it back on the road.</p>
+    <p>If you've got a frame collecting dust, our donation form is <a href="#">here</a>. We pick up anywhere in Eugene.</p>
+  </div>
+
+  <p style="margin-top: 2rem;">
+    <a href="#biz">&larr; More from Riverside Bicycle Co.</a>
+  </p>
+
+  <footer>
+    A COMM 130 project · Lane Community College · Spring 2026
+  </footer>
+
+</main>
+</body>
+</html>

@@ -1,0 +1,57 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+import { site } from '../../site.config';
+
+export async function getStaticPaths() {
+  const businesses = await getCollection('businesses');
+  return businesses.map((b) => ({
+    params: { slug: b.slug },
+    props: { business: b },
+  }));
+}
+
+const { business } = Astro.props;
+const { Content } = await business.render();
+
+const allPosts = await getCollection('posts');
+const myPosts = allPosts
+  .filter((p) => p.data.business.slug === business.slug)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const fmtShort = (d: Date) =>
+  d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+
+const typeLabel = { blog: 'Blog', social: 'Social', video: 'Promo Video' } as const;
+
+const isCurrent = business.data.term === site.currentTerm;
+const status = isCurrent ? 'Active' : 'Archived';
+---
+
+<Base title={business.data.name} description={business.data.tagline}>
+  <article class="article">
+    <h1 class="post-title">{business.data.name}</h1>
+    <p class="post-meta">
+      {business.data.tagline} · {business.data.location} · {business.data.term} · {status}
+    </p>
+
+    <div class="post-body">
+      <p>{business.data.description}</p>
+      <Content />
+    </div>
+
+    <h2 class="section-h" style="margin-top:2rem;">Posts from {business.data.name}</h2>
+    {myPosts.length === 0 ? (
+      <p style="color: var(--soft); font-style: italic;">No posts yet.</p>
+    ) : (
+      <ul class="feed">
+        {myPosts.map((p) => (
+          <li>
+            <span class="date">{fmtShort(p.data.date)} ·</span>
+            <a href={`/posts/${p.slug}`}>{typeLabel[p.data.type]}: {p.data.title}</a>
+          </li>
+        ))}
+      </ul>
+    )}
+  </article>
+</Base>

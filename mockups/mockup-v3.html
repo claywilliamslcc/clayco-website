@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ClayCo — Empowering Student Industries</title>
+<meta property="og:title" content="ClayCo — Empowering Student Industries">
+<meta property="og:description" content="A directory of student-run businesses publishing under the ClayCo umbrella. A COMM 130 project at Lane Community College.">
+<style>
+  :root {
+    --ink: #111;
+    --paper: #fff;
+    --rule: #c8c8c8;
+    --link: #1B4F8C;
+    --link-visited: #5a3a8c;
+    --gold: #F5B829;
+    --soft: #6a6a6a;
+  }
+  * { box-sizing: border-box; }
+  html { font-size: 17px; }
+  body {
+    font-family: Georgia, "Times New Roman", Times, serif;
+    color: var(--ink);
+    background: var(--paper);
+    margin: 0;
+    line-height: 1.5;
+  }
+  .skip {
+    position: absolute; left: -9999px; top: 0;
+    background: var(--ink); color: var(--paper);
+    padding: 0.5rem 0.75rem; z-index: 100;
+  }
+  .skip:focus { left: 1rem; top: 1rem; }
+
+  main {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 4rem;
+  }
+
+  /* ============== Masthead ============== */
+  .masthead {
+    text-align: center;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  .wordmark {
+    font-size: 2.6rem;
+    font-weight: 400;
+    color: var(--link);
+    line-height: 1;
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+  .tagline {
+    font-style: italic;
+    margin: 0.4rem 0 0;
+    font-size: 1rem;
+  }
+  .gold-rule {
+    width: 5rem;
+    height: 3px;
+    background: var(--gold);
+    margin: 0.85rem auto 0;
+    border: 0;
+  }
+  nav.primary {
+    margin-top: 0.85rem;
+    font-size: 0.95rem;
+  }
+  nav.primary a { margin: 0 0.6rem; }
+
+  /* ============== Links — BH treatment ============== */
+  a { color: var(--link); text-decoration: underline; }
+  a:visited { color: var(--link-visited); }
+  a:hover { background: #fffbe6; }
+
+  /* ============== Two-column body ============== */
+  .columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    margin-top: 0.5rem;
+  }
+  @media (max-width: 760px) {
+    .columns { grid-template-columns: 1fr; gap: 1.5rem; }
+  }
+  .col h2 {
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 700;
+    color: var(--ink);
+    margin: 0 0 0.75rem;
+    padding-bottom: 0.25rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  .col h3 {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 700;
+    color: var(--soft);
+    margin: 1.75rem 0 0.5rem;
+  }
+  .col ul {
+    margin: 0;
+    padding-left: 1.25rem;
+  }
+  .col li {
+    margin-bottom: 0.85rem;
+    line-height: 1.45;
+  }
+  .col li .desc {
+    display: block;
+    color: var(--soft);
+    font-size: 0.9rem;
+    margin-top: 0.1rem;
+  }
+  .col li .lastpost {
+    display: block;
+    color: var(--soft);
+    font-size: 0.82rem;
+    font-style: italic;
+    margin-top: 0.1rem;
+  }
+  .col .more {
+    margin-top: 1rem;
+    font-size: 0.95rem;
+  }
+  .col .past-blurb {
+    color: var(--soft);
+    font-size: 0.92rem;
+    margin: 0.25rem 0 0.5rem;
+  }
+
+  /* ============== Recent posts feed style ============== */
+  ul.feed { list-style: disc; padding-left: 1.25rem; }
+  ul.feed li { margin-bottom: 0.75rem; }
+  .feed .date { color: var(--soft); font-size: 0.85rem; }
+  .feed .biz  { color: var(--ink); }
+
+  /* ============== Cross-column rule ============== */
+  .full-rule {
+    border: 0;
+    border-top: 1px solid var(--rule);
+    margin: 2.5rem 0 1.5rem;
+  }
+
+  /* ============== About / Mission ============== */
+  .about {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .about h2 {
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 700;
+    margin: 0 0 0.75rem;
+  }
+  .about p {
+    margin: 0.65rem 0;
+    font-size: 1rem;
+  }
+  .about-photo {
+    margin: 1.5rem 0 0;
+    text-align: center;
+  }
+  .about-photo .ph-placeholder {
+    background: #f3f3f3;
+    border: 1px solid var(--rule);
+    aspect-ratio: 16/9;
+    max-width: 360px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--soft);
+    font-style: italic;
+    font-size: 0.85rem;
+  }
+  .about-photo .caption {
+    color: var(--soft);
+    font-size: 0.82rem;
+    font-style: italic;
+    margin-top: 0.4rem;
+  }
+
+  /* ============== Showcase teaser ============== */
+  .showcase-line {
+    text-align: center;
+    margin: 2rem 0 0;
+    font-size: 0.95rem;
+    color: var(--soft);
+  }
+  .showcase-line strong { color: var(--ink); font-weight: 700; }
+
+  /* ============== Footer ============== */
+  footer {
+    margin-top: 3rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--rule);
+    font-size: 0.85rem;
+    color: var(--soft);
+    text-align: center;
+  }
+  footer a { color: var(--soft); }
+
+  /* ============== Mockup divider ============== */
+  .mockup-divider {
+    margin: 5rem 0 0;
+    border: 0;
+    border-top: 2px dashed #c0c0c0;
+  }
+  .mockup-label {
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    color: #999;
+    margin: 1rem 0 -1rem;
+  }
+
+  /* ============== Sample post ============== */
+  .post-meta { color: var(--soft); font-size: 0.92rem; margin: 0.25rem 0 1.25rem; }
+  .post-body p { margin: 0.85rem 0; font-size: 1.02rem; line-height: 1.6; }
+  .embed {
+    background: #f3f3f3;
+    border: 1px solid var(--rule);
+    aspect-ratio: 16 / 9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--soft);
+    font-style: italic;
+    margin: 1.25rem 0;
+    font-size: 0.9rem;
+  }
+  h3.post-title { font-size: 1.6rem; font-weight: 400; margin: 0; }
+
+  /* ============== Past Industries page ============== */
+  .term-block {
+    margin-top: 2rem;
+  }
+  .term-block h2 {
+    font-size: 1.05rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 700;
+    margin: 0 0 0.5rem;
+    padding-bottom: 0.25rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  .term-block .term-meta {
+    color: var(--soft);
+    font-size: 0.9rem;
+    margin: 0 0 0.75rem;
+  }
+</style>
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<main id="main">
+
+  <!-- ============================================== -->
+  <!-- HOMEPAGE                                       -->
+  <!-- ============================================== -->
+  <header class="masthead">
+    <h1 class="wordmark">ClayCo</h1>
+    <p class="tagline">Empowering Student Industries</p>
+    <hr class="gold-rule">
+    <nav class="primary">
+      <a href="#industries">Industries</a>
+      <a href="#posts">Recent Posts</a>
+      <a href="#past">Past Industries</a>
+      <a href="#showcase">Showcase</a>
+      <a href="#about">About</a>
+    </nav>
+  </header>
+
+  <div class="columns">
+
+    <section class="col" id="industries">
+      <h2>Current Industries — Spring 2026</h2>
+      <ul>
+        <li>
+          <a href="#biz">Riverside Bicycle Co.</a>
+          <span class="desc">Sustainable bike repair and refurbishment, Eugene OR</span>
+          <span class="lastpost">Last post: May 4, 2026</span>
+        </li>
+        <li>
+          <a href="#">Eugene Print House</a>
+          <span class="desc">Risograph and screen printing for local artists</span>
+          <span class="lastpost">Last post: May 3, 2026</span>
+        </li>
+        <li>
+          <a href="#">Cascade Tutoring</a>
+          <span class="desc">Peer tutoring for Lane and OSU students</span>
+          <span class="lastpost">Last post: May 1, 2026</span>
+        </li>
+        <li>
+          <a href="#">Willamette Roastery</a>
+          <span class="desc">Single-origin coffee, cooperative model</span>
+          <span class="lastpost">Last post: May 2, 2026</span>
+        </li>
+        <li>
+          <a href="#">Pacific Threads</a>
+          <span class="desc">Vintage clothing curation and resale</span>
+          <span class="lastpost">Last post: April 30, 2026</span>
+        </li>
+        <li>
+          <a href="#">North Hills Dogwalking</a>
+          <span class="desc">Neighborhood pet care, Eugene area</span>
+          <span class="lastpost">Last post: April 28, 2026</span>
+        </li>
+        <li>
+          <a href="#">Studio 451</a>
+          <span class="desc">Small-batch ceramics from a CEN 451 collective</span>
+          <span class="lastpost">Last post: April 29, 2026</span>
+        </li>
+      </ul>
+      <p class="more"><a href="#">All 26 current industries &rarr;</a></p>
+
+      <h3 id="past">Past Industries</h3>
+      <p class="past-blurb">An archive of every student-run business that has published under the ClayCo umbrella, organized by term.</p>
+      <ul>
+        <li><a href="#archive">Fall 2025</a> <span class="desc">24 industries · 312 posts</span></li>
+        <li><a href="#archive">Spring 2025</a> <span class="desc">22 industries · 287 posts</span></li>
+        <li><a href="#archive">Fall 2024</a> <span class="desc">19 industries · 241 posts</span></li>
+      </ul>
+      <p class="more"><a href="#archive">Browse the full archive &rarr;</a></p>
+    </section>
+
+    <section class="col" id="posts">
+      <h2>Recent Posts</h2>
+      <ul class="feed">
+        <li>
+          <span class="date">May 4 ·</span>
+          <a href="#post">Promo Video: How We Source Frames</a>
+          <span class="biz">— Riverside Bicycle Co.</span>
+        </li>
+        <li>
+          <span class="date">May 3 ·</span>
+          <a href="#">Blog: A Day at the Riso</a>
+          <span class="biz">— Eugene Print House</span>
+        </li>
+        <li>
+          <span class="date">May 2 ·</span>
+          <a href="#">Social: Roast schedule for May</a>
+          <span class="biz">— Willamette Roastery</span>
+        </li>
+        <li>
+          <span class="date">May 1 ·</span>
+          <a href="#">Blog: Why office hours matter</a>
+          <span class="biz">— Cascade Tutoring</span>
+        </li>
+        <li>
+          <span class="date">Apr 30 ·</span>
+          <a href="#">Social: Saturday market preview</a>
+          <span class="biz">— Pacific Threads</span>
+        </li>
+        <li>
+          <span class="date">Apr 29 ·</span>
+          <a href="#">Promo Video: First firing of the term</a>
+          <span class="biz">— Studio 451</span>
+        </li>
+        <li>
+          <span class="date">Apr 28 ·</span>
+          <a href="#">Blog: Why we don't sell new bikes</a>
+          <span class="biz">— Riverside Bicycle Co.</span>
+        </li>
+        <li>
+          <span class="date">Apr 28 ·</span>
+          <a href="#">Social: Workshop hours</a>
+          <span class="biz">— North Hills Dogwalking</span>
+        </li>
+      </ul>
+      <p class="more"><a href="#">Older posts &rarr;</a> · <a href="#">RSS</a></p>
+    </section>
+
+  </div>
+
+  <hr class="full-rule">
+
+  <section class="about" id="about">
+    <h2>About ClayCo</h2>
+    <p>At ClayCo, we are dedicated to showcasing the innovative businesses created by students. Our platform provides a space for students to exhibit their entrepreneurial ventures and connect with potential collaborators and investors.</p>
+    <p>We believe in empowering the next generation of leaders and change-makers by giving them the opportunity to present their unique business ideas and projects.</p>
+    <p>Join us in celebrating the creativity and ambition of student entrepreneurs. Whether you are looking to explore inspiring ventures or share your own, ClayCo is the perfect platform for you.</p>
+
+    <div class="about-photo">
+      <div class="ph-placeholder">[building photo, optional small placement]</div>
+      <p class="caption">ClayCo headquarters</p>
+    </div>
+  </section>
+
+  <p class="showcase-line" id="showcase">
+    <strong>Showcase</strong> &nbsp;·&nbsp; <a href="#">Spring 2026 trade-show presentations, finals week (June 8–12)</a>
+  </p>
+
+  <footer>
+    A COMM 130 project · Lane Community College · Spring 2026 ·
+    <a href="mailto:williamsc@lanecc.edu">williamsc@lanecc.edu</a> ·
+    <a href="#">RSS</a>
+  </footer>
+
+  <!-- ============================================== -->
+  <!-- VIEW 2 — PAST INDUSTRIES ARCHIVE PAGE          -->
+  <!-- ============================================== -->
+  <hr class="mockup-divider">
+  <p class="mockup-label">View 2 — Past Industries archive page</p>
+
+  <header class="masthead" style="margin-top: 2.5rem;">
+    <h1 class="wordmark">ClayCo</h1>
+    <p class="tagline">Empowering Student Industries</p>
+    <hr class="gold-rule">
+    <nav class="primary">
+      <a href="#industries">Industries</a>
+      <a href="#posts">Recent Posts</a>
+      <a href="#past">Past Industries</a>
+      <a href="#showcase">Showcase</a>
+      <a href="#about">About</a>
+    </nav>
+  </header>
+
+  <section style="max-width: 800px; margin: 0 auto;" id="archive">
+    <h2 style="font-size: 1.4rem; font-weight: 400; margin: 0 0 0.25rem;">Past Industries</h2>
+    <p style="color: var(--soft); margin: 0 0 1.5rem; font-size: 0.95rem;">Every student-run business that has published under the ClayCo umbrella, organized by term. Posts and pages remain live indefinitely.</p>
+
+    <div class="term-block">
+      <h2>Fall 2025</h2>
+      <p class="term-meta">24 industries · 312 posts · Term ended December 12, 2025</p>
+      <ul>
+        <li><a href="#">Sage & Stone Apothecary</a> <span class="desc">Herbal tinctures and small-batch tea blends</span></li>
+        <li><a href="#">Mid-Valley Couriers</a> <span class="desc">Bike-based last-mile delivery</span></li>
+        <li><a href="#">Hayward Studios</a> <span class="desc">Audio production and podcast editing</span></li>
+        <li><a href="#">…</a> <span class="desc">21 more</span></li>
+      </ul>
+      <p class="more"><a href="#">View Fall 2025 in full &rarr;</a></p>
+    </div>
+
+    <div class="term-block">
+      <h2>Spring 2025</h2>
+      <p class="term-meta">22 industries · 287 posts · Term ended June 13, 2025</p>
+      <ul>
+        <li><a href="#">Coast Range Salsa Co.</a> <span class="desc">Small-batch hot sauce</span></li>
+        <li><a href="#">Lane Letterpress</a> <span class="desc">Custom stationery and broadsides</span></li>
+        <li><a href="#">…</a> <span class="desc">20 more</span></li>
+      </ul>
+      <p class="more"><a href="#">View Spring 2025 in full &rarr;</a></p>
+    </div>
+
+    <div class="term-block">
+      <h2>Fall 2024</h2>
+      <p class="term-meta">19 industries · 241 posts · Term ended December 13, 2024</p>
+      <ul>
+        <li><a href="#">…</a> <span class="desc">19 industries</span></li>
+      </ul>
+      <p class="more"><a href="#">View Fall 2024 in full &rarr;</a></p>
+    </div>
+  </section>
+
+  <!-- ============================================== -->
+  <!-- VIEW 3 — SAMPLE BUSINESS PAGE                  -->
+  <!-- ============================================== -->
+  <hr class="mockup-divider">
+  <p class="mockup-label">View 3 — Sample business page</p>
+
+  <header class="masthead" style="margin-top: 2.5rem;">
+    <h1 class="wordmark">ClayCo</h1>
+    <p class="tagline">Empowering Student Industries</p>
+    <hr class="gold-rule">
+    <nav class="primary">
+      <a href="#industries">Industries</a>
+      <a href="#posts">Recent Posts</a>
+      <a href="#past">Past Industries</a>
+      <a href="#showcase">Showcase</a>
+      <a href="#about">About</a>
+    </nav>
+  </header>
+
+  <section class="about" id="biz">
+    <h3 class="post-title">Riverside Bicycle Co.</h3>
+    <p class="post-meta">Sustainable bike repair and refurbishment · Eugene, OR · Spring 2026 · Active</p>
+    <p>Riverside Bicycle Co. believes the most sustainable bike is one that already exists. We repair, refurbish, and rehome bicycles that would otherwise end up in a landfill — sourced from estate sales, OSU surplus, and donations.</p>
+
+    <h2 style="font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.1em; margin: 2rem 0 0.75rem; padding-bottom: 0.25rem; border-bottom: 1px solid var(--rule);">Posts from Riverside Bicycle Co.</h2>
+    <ul class="feed">
+      <li><span class="date">May 4 ·</span> <a href="#post">Promo Video: How We Source Frames</a></li>
+      <li><span class="date">Apr 28 ·</span> <a href="#">Blog: Why we don't sell new bikes</a></li>
+      <li><span class="date">Apr 21 ·</span> <a href="#">Social: Saturday market schedule</a></li>
+      <li><span class="date">Apr 14 ·</span> <a href="#">Blog: Spring tune-up specials</a></li>
+      <li><span class="date">Apr 7 ·</span> <a href="#">Social: Workshop hours</a></li>
+    </ul>
+    <p class="more"><a href="#">RSS for Riverside Bicycle Co.</a></p>
+  </section>
+
+  <!-- ============================================== -->
+  <!-- VIEW 4 — SAMPLE POST PAGE                      -->
+  <!-- ============================================== -->
+  <hr class="mockup-divider">
+  <p class="mockup-label">View 4 — Sample post page</p>
+
+  <header class="masthead" style="margin-top: 2.5rem;">
+    <h1 class="wordmark">ClayCo</h1>
+    <p class="tagline">Empowering Student Industries</p>
+    <hr class="gold-rule">
+    <nav class="primary">
+      <a href="#industries">Industries</a>
+      <a href="#posts">Recent Posts</a>
+      <a href="#past">Past Industries</a>
+      <a href="#showcase">Showcase</a>
+      <a href="#about">About</a>
+    </nav>
+  </header>
+
+  <section class="about">
+    <h3 class="post-title" id="post">Promo Video: How We Source Frames</h3>
+    <p class="post-meta">
+      <a href="#biz">Riverside Bicycle Co.</a> · May 4, 2026 · Promo Video
+    </p>
+
+    <div class="embed">[embedded video — 16:9 placeholder]</div>
+
+    <div class="post-body">
+      <p>We started Riverside on the premise that the most sustainable bike is one that already exists. This video walks through where our frames come from — estate sales, OSU surplus, donations from cyclists upgrading their rides.</p>
+      <p>The short version: we don't buy new. We buy used, fix what's broken, and pass it on at a price a student can afford. The full pipeline is in the video above, but the gist is that there's a lot of perfectly good steel sitting in garages, and our job is to get it back on the road.</p>
+      <p>If you've got a frame collecting dust, our donation form is <a href="#">here</a>. We pick up anywhere in Eugene.</p>
+    </div>
+
+    <p style="margin-top: 2rem;">
+      <a href="#biz">&larr; More from Riverside Bicycle Co.</a>
+    </p>
+  </section>
+
+</main>
+</body>
+</html>

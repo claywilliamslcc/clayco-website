@@ -1,0 +1,98 @@
+---
+import Base from '../layouts/Base.astro';
+import { getCollection, getEntry } from 'astro:content';
+import { site } from '../site.config';
+
+// Load and filter businesses to the current term, sorted by name.
+const allBusinesses = await getCollection('businesses');
+const currentBusinesses = allBusinesses
+  .filter((b) => b.data.term === site.currentTerm)
+  .sort((a, b) => a.data.name.localeCompare(b.data.name));
+
+// Load all posts, sorted newest first.
+const allPosts = (await getCollection('posts')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+const recentPosts = allPosts.slice(0, 8);
+
+// For each business, find the date of their most recent post.
+const lastPostByBiz = new Map<string, Date>();
+for (const post of allPosts) {
+  const slug = post.data.business.slug;
+  const existing = lastPostByBiz.get(slug);
+  if (!existing || post.data.date > existing) {
+    lastPostByBiz.set(slug, post.data.date);
+  }
+}
+
+// Resolve business references for the recent posts feed.
+const recentPostsWithBiz = await Promise.all(
+  recentPosts.map(async (post) => {
+    const biz = await getEntry(post.data.business);
+    return { post, biz };
+  })
+);
+
+const fmtDate = (d: Date) =>
+  d.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+const fmtShort = (d: Date) =>
+  d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+
+const typeLabel = { blog: 'Blog', social: 'Social', video: 'Promo Video' } as const;
+---
+
+<Base>
+  <div class="columns">
+    <section class="col" id="industries">
+      <h2>Industries — {site.currentTerm}</h2>
+      <ul>
+        {currentBusinesses.map((b) => {
+          const last = lastPostByBiz.get(b.slug);
+          return (
+            <li>
+              <a href={`/industries/${b.slug}`}>{b.data.name}</a>
+              <span class="desc">{b.data.tagline}{b.data.location ? `, ${b.data.location}` : ''}</span>
+              {last && <span class="lastpost">Last post: {fmtDate(last)}</span>}
+            </li>
+          );
+        })}
+      </ul>
+      {currentBusinesses.length > 7 && (
+        <p class="more"><a href="/industries">All {currentBusinesses.length} industries &rarr;</a></p>
+      )}
+    </section>
+
+    <section class="col" id="posts">
+      <h2>Recent Posts</h2>
+      <ul class="feed">
+        {recentPostsWithBiz.map(({ post, biz }) => (
+          <li>
+            <span class="date">{fmtShort(post.data.date)} ·</span>
+            <a href={`/posts/${post.slug}`}>{typeLabel[post.data.type]}: {post.data.title}</a>
+            <span class="biz">— {biz.data.name}</span>
+          </li>
+        ))}
+      </ul>
+      <p class="more"><a href="/posts">Older posts &rarr;</a> · <a href="/rss.xml">RSS</a></p>
+    </section>
+  </div>
+
+  <hr class="full-rule" />
+
+  <section class="article" id="about">
+    <h2>About ClayCo</h2>
+    <p>At ClayCo, we are dedicated to showcasing the innovative businesses created by students. Our platform provides a space for students to exhibit their entrepreneurial ventures and connect with potential collaborators and investors.</p>
+    <p>We believe in empowering the next generation of leaders and change-makers by giving them the opportunity to present their unique business ideas and projects.</p>
+    <p>Join us in celebrating the creativity and ambition of student entrepreneurs. Whether you are looking to explore inspiring ventures or share your own, ClayCo is the perfect platform for you.</p>
+
+    <div class="article-photo">
+      <div class="ph-placeholder">[building photo placeholder — add as /public/headquarters.jpg]</div>
+      <p class="caption">ClayCo headquarters</p>
+    </div>
+  </section>
+
+  <p class="showcase-line">
+    <strong>Showcase</strong> &nbsp;·&nbsp;
+    <a href="/showcase">{site.currentTerm} trade-show presentations, finals week</a>
+  </p>
+</Base>

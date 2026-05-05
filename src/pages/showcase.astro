@@ -1,0 +1,12 @@
+---
+import Base from '../layouts/Base.astro';
+import { site } from '../site.config';
+---
+
+<Base title="Showcase">
+  <article class="article">
+    <h2>Showcase — {site.currentTerm}</h2>
+    <p>The {site.currentTerm} ClayCo trade show takes place during finals week. Each industry presents a five-minute pitch to an audience of peers, faculty, and invited guests.</p>
+    <p style="color: var(--soft); font-style: italic;">Schedule and recordings will appear here as they become available.</p>
+  </article>
+</Base>

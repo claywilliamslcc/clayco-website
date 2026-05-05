@@ -1,0 +1,55 @@
+---
+import { site } from '../site.config';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title, description } = Astro.props;
+const fullTitle = title ? `${title} — ${site.name}` : `${site.name} — ${site.tagline}`;
+const desc = description ?? site.description;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{fullTitle}</title>
+  <meta name="description" content={desc} />
+  <meta property="og:title" content={fullTitle} />
+  <meta property="og:description" content={desc} />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={site.url} />
+  <meta property="og:image" content={`${site.url}/og-image.jpg`} />
+  <link rel="alternate" type="application/rss+xml" title={`${site.name} feed`} href="/rss.xml" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <main id="main">
+    <header class="masthead">
+      <h1 class="wordmark"><a href="/">{site.name}</a></h1>
+      <p class="tagline">{site.tagline}</p>
+      <hr class="gold-rule" />
+      <nav class="primary" aria-label="Primary">
+        <a href="/#industries">Industries</a>
+        <a href="/#posts">Recent Posts</a>
+        <a href="/showcase">Showcase</a>
+        <a href="/about">About</a>
+      </nav>
+    </header>
+
+    <slot />
+
+    <footer>
+      A {site.course.split('—')[0].trim()} project · {site.institution} · {site.currentTerm} ·
+      <a href={`mailto:${site.email}`}>{site.email}</a> ·
+      <a href="/rss.xml">RSS</a>
+    </footer>
+  </main>
+</body>
+</html>

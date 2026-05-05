@@ -1,0 +1,69 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection, getEntry } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('posts');
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+const business = await getEntry(post.data.business);
+
+const fmtDate = (d: Date) =>
+  d.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+
+const typeLabel = { blog: 'Blog', social: 'Social', video: 'Promo Video' } as const;
+
+// Convert YouTube/Vimeo URLs to embed URLs.
+function embedUrl(url?: string): string | null {
+  if (!url) return null;
+  const yt = url.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|v\/))([\w-]+)/);
+  if (yt) return `https://www.youtube.com/embed/${yt[1]}`;
+  const vm = url.match(/vimeo\.com\/(\d+)/);
+  if (vm) return `https://player.vimeo.com/video/${vm[1]}`;
+  return null;
+}
+const embed = embedUrl(post.data.videoUrl);
+---
+
+<Base title={post.data.title} description={`${typeLabel[post.data.type]} from ${business.data.name}`}>
+  <article class="article">
+    <h1 class="post-title">{post.data.title}</h1>
+    <p class="post-meta">
+      <a href={`/industries/${business.slug}`}>{business.data.name}</a>
+      · {fmtDate(post.data.date)}
+      · {typeLabel[post.data.type]}
+    </p>
+
+    {embed && (
+      <div class="embed">
+        <iframe
+          src={embed}
+          title={post.data.title}
+          loading="lazy"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+        ></iframe>
+      </div>
+    )}
+
+    {post.data.image && (
+      <p style="margin: 1.25rem 0;">
+        <img src={post.data.image} alt={post.data.imageAlt ?? ''} loading="lazy" />
+      </p>
+    )}
+
+    <div class="post-body">
+      <Content />
+    </div>
+
+    <p style="margin-top: 2rem;">
+      <a href={`/industries/${business.slug}`}>&larr; More from {business.data.name}</a>
+    </p>
+  </article>
+</Base>

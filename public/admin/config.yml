@@ -1,0 +1,79 @@
+# =================================================
+# Decap CMS configuration
+# =================================================
+# Students log in via Netlify Identity, edit content
+# through these forms, and Decap commits to GitHub.
+# Astro rebuilds and Netlify deploys automatically.
+# =================================================
+
+backend:
+  name: git-gateway
+  branch: main
+
+# Where uploaded images are stored.
+media_folder: "public/uploads"
+public_folder: "/uploads"
+
+# Editorial workflow off — Clay confirmed students publish
+# directly without an approval gate.
+publish_mode: simple
+
+site_url: https://clayco.work
+display_url: https://clayco.work
+logo_url: /favicon.svg
+
+collections:
+  # =============================================
+  # BUSINESSES — one entry per student-run org
+  # =============================================
+  - name: "businesses"
+    label: "Industries (your business)"
+    label_singular: "Business"
+    folder: "src/content/businesses"
+    create: true
+    slug: "{{slug}}"
+    extension: "md"
+    fields:
+      - { label: "Business name", name: "name", widget: "string", hint: "The official name of your fictional business." }
+      - { label: "One-line tagline", name: "tagline", widget: "string", hint: "A 5-10 word description that appears under your name in directories." }
+      - { label: "Description", name: "description", widget: "text", hint: "A paragraph or two introducing your business. Appears at the top of your page." }
+      - { label: "Location", name: "location", widget: "string", default: "Eugene, OR" }
+      - { label: "Term", name: "term", widget: "string", default: "Spring 2026", hint: "The term your business was founded in. Set by your instructor." }
+      - { label: "Founded", name: "founded", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, format: "YYYY-MM-DD", picker_utc: false }
+      - { label: "Archived (set when term ends)", name: "archived", widget: "datetime", required: false, date_format: "YYYY-MM-DD", time_format: false, format: "YYYY-MM-DD", picker_utc: false }
+      - label: "External links (optional)"
+        name: "external"
+        widget: "object"
+        required: false
+        collapsed: true
+        fields:
+          - { label: "Instagram URL", name: "instagram", widget: "string", required: false }
+          - { label: "YouTube URL", name: "youtube", widget: "string", required: false }
+          - { label: "Website URL", name: "website", widget: "string", required: false }
+
+  # =============================================
+  # POSTS — blog, social media, or promo video
+  # =============================================
+  - name: "posts"
+    label: "Posts (blog · social · video)"
+    label_singular: "Post"
+    folder: "src/content/posts"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    extension: "md"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - label: "Type"
+        name: "type"
+        widget: "select"
+        options:
+          - { label: "Blog Post", value: "blog" }
+          - { label: "Social Media Post", value: "social" }
+          - { label: "Promo Video", value: "video" }
+        hint: "Pick the kind of post this is."
+      - { label: "Business", name: "business", widget: "relation", collection: "businesses", search_fields: ["name"], value_field: "{{slug}}", display_fields: ["name"], hint: "Which business is this post from?" }
+      - { label: "Date", name: "date", widget: "datetime", default: "", date_format: "YYYY-MM-DD", time_format: false, format: "YYYY-MM-DD", picker_utc: false }
+      - { label: "Video URL (for video posts only)", name: "videoUrl", widget: "string", required: false, hint: "Paste the full YouTube or Vimeo URL." }
+      - { label: "Image (for social or blog posts)", name: "image", widget: "image", required: false, allow_multiple: false }
+      - { label: "Image alt text (required if image present)", name: "imageAlt", widget: "string", required: false, hint: "Describe the image briefly for screen readers." }
+      - { label: "Body", name: "body", widget: "markdown", hint: "Write your post here. Use the formatting toolbar above the editor." }
