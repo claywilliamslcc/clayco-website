@@ -53,12 +53,12 @@ main {
 .logo {
   display: block;
   width: 100%;
-  max-width: 280px;
+  max-width: 360px;
   height: auto;
   margin: 0.5rem auto 0.5rem;
 }
 @media (max-width: 600px) {
-  .logo { max-width: 220px; }
+  .logo { max-width: 280px; }
 }
 nav.primary {
   margin-top: 0.5rem;
