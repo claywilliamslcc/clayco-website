@@ -26,6 +26,7 @@ const desc = description ?? site.description;
   <meta property="og:image" content={`${site.url}/og-image.jpg`} />
   <link rel="alternate" type="application/rss+xml" title={`${site.name} feed`} href="/rss.xml" />
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
@@ -51,5 +52,19 @@ const desc = description ?? site.description;
       <a href="/rss.xml">RSS</a>
     </footer>
   </main>
+
+  <script is:inline>
+    // Redirect users who land on the homepage with an Identity invite/recovery
+    // token in the URL hash to the /admin page where the CMS is expecting them.
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on('init', (user) => {
+        if (!user) {
+          window.netlifyIdentity.on('login', () => {
+            document.location.href = '/admin/';
+          });
+        }
+      });
+    }
+  </script>
 </body>
 </html>
