@@ -45,35 +45,51 @@ const typeLabel = { blog: 'Blog', social: 'Social', video: 'Promo Video' } as co
   <div class="columns">
     <section class="col" id="industries">
       <h2>Industries — {site.currentTerm}</h2>
-      <ul>
-        {currentBusinesses.map((b) => {
-          const last = lastPostByBiz.get(b.slug);
-          return (
-            <li>
-              <a href={`/industries/${b.slug}`}>{b.data.name}</a>
-              <span class="desc">{b.data.tagline}{b.data.location ? `, ${b.data.location}` : ''}</span>
-              {last && <span class="lastpost">Last post: {fmtDate(last)}</span>}
-            </li>
-          );
-        })}
-      </ul>
-      {currentBusinesses.length > 7 && (
-        <p class="more"><a href="/industries">All {currentBusinesses.length} industries &rarr;</a></p>
+      {currentBusinesses.length === 0 ? (
+        <p class="empty-state">
+          {site.currentTerm} industries will publish here starting Week 4 of class. Each student-run business gets its own page the moment a member creates it.
+        </p>
+      ) : (
+        <>
+          <ul>
+            {currentBusinesses.map((b) => {
+              const last = lastPostByBiz.get(b.slug);
+              return (
+                <li>
+                  <a href={`/industries/${b.slug}`}>{b.data.name}</a>
+                  <span class="desc">{b.data.tagline}{b.data.location ? `, ${b.data.location}` : ''}</span>
+                  {last && <span class="lastpost">Last post: {fmtDate(last)}</span>}
+                </li>
+              );
+            })}
+          </ul>
+          {currentBusinesses.length > 7 && (
+            <p class="more"><a href="/industries">All {currentBusinesses.length} industries &rarr;</a></p>
+          )}
+        </>
       )}
     </section>
 
     <section class="col" id="posts">
       <h2>Recent Posts</h2>
-      <ul class="feed">
-        {recentPostsWithBiz.map(({ post, biz }) => (
-          <li>
-            <span class="date">{fmtShort(post.data.date)} ·</span>
-            <a href={`/posts/${post.slug}`}>{typeLabel[post.data.type]}: {post.data.title}</a>
-            <span class="biz">— {biz.data.name}</span>
-          </li>
-        ))}
-      </ul>
-      <p class="more"><a href="/posts">Older posts &rarr;</a> · <a href="/rss.xml">RSS</a></p>
+      {recentPostsWithBiz.length === 0 ? (
+        <p class="empty-state">
+          The first blog, social, and promo video posts of the term will appear here as students publish.
+        </p>
+      ) : (
+        <>
+          <ul class="feed">
+            {recentPostsWithBiz.map(({ post, biz }) => (
+              <li>
+                <span class="date">{fmtShort(post.data.date)} ·</span>
+                <a href={`/posts/${post.slug}`}>{typeLabel[post.data.type]}: {post.data.title}</a>
+                <span class="biz">— {biz.data.name}</span>
+              </li>
+            ))}
+          </ul>
+          <p class="more"><a href="/posts">Older posts &rarr;</a> · <a href="/rss.xml">RSS</a></p>
+        </>
+      )}
     </section>
   </div>
 

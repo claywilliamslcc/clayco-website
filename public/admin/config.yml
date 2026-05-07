@@ -1,5 +1,5 @@
 # =================================================
-# Decap CMS configuration
+# Decap CMS configuration — ClayCo
 # =================================================
 # Students log in via Netlify Identity, edit content
 # through these forms, and Decap commits to GitHub.
@@ -14,66 +14,150 @@ backend:
 media_folder: "public/uploads"
 public_folder: "/uploads"
 
-# Editorial workflow off — Clay confirmed students publish
-# directly without an approval gate.
+# Editorial workflow off — students publish directly without an approval gate.
 publish_mode: simple
 
 site_url: https://clayco.work
 display_url: https://clayco.work
-logo_url: /favicon.svg
+logo_url: /logo.jpg
 
 collections:
-  # =============================================
-  # BUSINESSES — one entry per student-run org
-  # =============================================
+  # =====================================================
+  # YOUR BUSINESS — one entry per student-run business
+  # =====================================================
   - name: "businesses"
-    label: "Industries (your business)"
+    label: "Your Business"
     label_singular: "Business"
+    description: "Each student-run business has one entry here. Create yours before you post."
     folder: "src/content/businesses"
     create: true
     slug: "{{slug}}"
     extension: "md"
+    summary: "{{name}} — {{tagline}}"
     fields:
-      - { label: "Business name", name: "name", widget: "string", hint: "The official name of your fictional business." }
-      - { label: "One-line tagline", name: "tagline", widget: "string", hint: "A 5-10 word description that appears under your name in directories." }
-      - { label: "Description", name: "description", widget: "text", hint: "A paragraph or two introducing your business. Appears at the top of your page." }
-      - { label: "Location", name: "location", widget: "string", default: "Eugene, OR" }
-      - { label: "Term", name: "term", widget: "string", default: "Spring 2026", hint: "The term your business was founded in. Set by your instructor." }
-      - { label: "Founded", name: "founded", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, format: "YYYY-MM-DD", picker_utc: false }
-      - { label: "Archived (set when term ends)", name: "archived", widget: "datetime", required: false, date_format: "YYYY-MM-DD", time_format: false, format: "YYYY-MM-DD", picker_utc: false }
+      - label: "Business name"
+        name: "name"
+        widget: "string"
+        hint: "The full official name of your fictional business. Example: 'Riverside Bicycle Co.'"
+
+      - label: "One-line tagline"
+        name: "tagline"
+        widget: "string"
+        hint: "5–10 words that describe what your business does. Example: 'Sustainable bike repair and refurbishment'"
+
+      - label: "Description"
+        name: "description"
+        widget: "text"
+        hint: "1–3 sentences introducing your business. This appears at the top of your business page."
+
+      - label: "Location"
+        name: "location"
+        widget: "string"
+        default: "Eugene, OR"
+        hint: "City and state where your business operates."
+
+      - label: "Term"
+        name: "term"
+        widget: "string"
+        default: "Spring 2026"
+        hint: "Don't change this unless your instructor tells you to."
+
+      - label: "Founded"
+        name: "founded"
+        widget: "datetime"
+        default: ""
+        date_format: "YYYY-MM-DD"
+        time_format: false
+        format: "YYYY-MM-DD"
+        picker_utc: false
+        hint: "The day your business was founded. For COMM 130, use the date you started this project."
+
+      - label: "Archived (instructor sets at end of term)"
+        name: "archived"
+        widget: "datetime"
+        required: false
+        date_format: "YYYY-MM-DD"
+        time_format: false
+        format: "YYYY-MM-DD"
+        picker_utc: false
+
       - label: "External links (optional)"
         name: "external"
         widget: "object"
         required: false
         collapsed: true
         fields:
-          - { label: "Instagram URL", name: "instagram", widget: "string", required: false }
-          - { label: "YouTube URL", name: "youtube", widget: "string", required: false }
-          - { label: "Website URL", name: "website", widget: "string", required: false }
+          - { label: "Instagram URL", name: "instagram", widget: "string", required: false, pattern: ['^https?://', "Must start with http:// or https://"] }
+          - { label: "YouTube URL",   name: "youtube",   widget: "string", required: false, pattern: ['^https?://', "Must start with http:// or https://"] }
+          - { label: "Website URL",   name: "website",   widget: "string", required: false, pattern: ['^https?://', "Must start with http:// or https://"] }
 
-  # =============================================
-  # POSTS — blog, social media, or promo video
-  # =============================================
+  # =====================================================
+  # POSTS — blog, social media, or promo video posts
+  # =====================================================
   - name: "posts"
-    label: "Posts (blog · social · video)"
+    label: "Posts (Blog · Social · Video)"
     label_singular: "Post"
+    description: "Each piece of content your business publishes — blog posts, social media posts, or promo videos."
     folder: "src/content/posts"
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     extension: "md"
+    summary: "{{date | date('YYYY-MM-DD')}} · {{type}} · {{title}}"
     fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - label: "Type"
+      - label: "Title"
+        name: "title"
+        widget: "string"
+        hint: "The headline of your post. Example: 'Why we don't sell new bikes' (don't include the type label — the site adds 'Blog:' or 'Social:' automatically)."
+
+      - label: "What kind of post is this?"
         name: "type"
         widget: "select"
         options:
-          - { label: "Blog Post", value: "blog" }
-          - { label: "Social Media Post", value: "social" }
-          - { label: "Promo Video", value: "video" }
-        hint: "Pick the kind of post this is."
-      - { label: "Business", name: "business", widget: "relation", collection: "businesses", search_fields: ["name"], value_field: "{{slug}}", display_fields: ["name"], hint: "Which business is this post from?" }
-      - { label: "Date", name: "date", widget: "datetime", default: "", date_format: "YYYY-MM-DD", time_format: false, format: "YYYY-MM-DD", picker_utc: false }
-      - { label: "Video URL (for video posts only)", name: "videoUrl", widget: "string", required: false, hint: "Paste the full YouTube or Vimeo URL." }
-      - { label: "Image (for social or blog posts)", name: "image", widget: "image", required: false, allow_multiple: false }
-      - { label: "Image alt text (required if image present)", name: "imageAlt", widget: "string", required: false, hint: "Describe the image briefly for screen readers." }
-      - { label: "Body", name: "body", widget: "markdown", hint: "Write your post here. Use the formatting toolbar above the editor." }
+          - { label: "Blog Post — long-form writing (a paragraph or more)", value: "blog" }
+          - { label: "Social Media Post — short, image-friendly, casual", value: "social" }
+          - { label: "Promo Video — embeds a YouTube or Vimeo video", value: "video" }
+        hint: "Pick one. This determines how your post is labeled and what fields you should fill in below."
+
+      - label: "Which business is this from?"
+        name: "business"
+        widget: "relation"
+        collection: "businesses"
+        search_fields: ["name"]
+        value_field: "{{slug}}"
+        display_fields: ["name"]
+        hint: "Pick your business. (If yours isn't here yet, go create it under 'Your Business' first.)"
+
+      - label: "Date"
+        name: "date"
+        widget: "datetime"
+        default: ""
+        date_format: "YYYY-MM-DD"
+        time_format: false
+        format: "YYYY-MM-DD"
+        picker_utc: false
+        hint: "Defaults to today. Change only if you're backdating."
+
+      - label: "Video URL (only for Promo Video posts)"
+        name: "videoUrl"
+        widget: "string"
+        required: false
+        pattern: ['^https?://(www\.)?(youtube\.com|youtu\.be|vimeo\.com)', "Must be a YouTube or Vimeo URL"]
+        hint: "Paste the full URL from YouTube or Vimeo. Leave blank for blog or social posts."
+
+      - label: "Image (optional, great for social posts)"
+        name: "image"
+        widget: "image"
+        required: false
+        allow_multiple: false
+        hint: "Drag in or upload a photo. The image appears below the title on the post page."
+
+      - label: "Image alt text (required if you added an image)"
+        name: "imageAlt"
+        widget: "string"
+        required: false
+        hint: "1 short sentence describing the image, for screen readers and people on slow connections."
+
+      - label: "Body"
+        name: "body"
+        widget: "markdown"
+        hint: "Write your post here. Use the toolbar above to format text. For social posts, even one short paragraph is fine."
