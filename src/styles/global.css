@@ -164,18 +164,13 @@ ul.feed li { margin-bottom: 0.75rem; }
   line-height: 1.55;
 }
 .article-photo { margin: 1.5rem 0 0; text-align: center; }
-.article-photo .ph-placeholder {
-  background: #f3f3f3;
-  border: 1px solid var(--rule);
-  aspect-ratio: 16/9;
-  max-width: 360px;
+.article-photo img {
+  display: block;
+  width: 100%;
+  max-width: 480px;
+  height: auto;
   margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--soft);
-  font-style: italic;
-  font-size: 0.85rem;
+  border: 1px solid var(--rule);
 }
 .article-photo .caption {
   color: var(--soft);
