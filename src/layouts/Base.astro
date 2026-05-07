@@ -33,9 +33,9 @@ const desc = description ?? site.description;
 
   <main id="main">
     <header class="masthead">
-      <h1 class="wordmark"><a href="/">{site.name}</a></h1>
-      <p class="tagline">{site.tagline}</p>
-      <hr class="gold-rule" />
+      <a href="/" class="logo-link" aria-label={`${site.name} home`}>
+        <img class="logo" src="/logo.jpg" alt={`${site.name} — ${site.tagline}`} width="1024" height="1024" />
+      </a>
       <nav class="primary" aria-label="Primary">
         <a href="/#industries">Industries</a>
         <a href="/#posts">Recent Posts</a>
