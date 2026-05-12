@@ -109,7 +109,6 @@ a:focus-visible {
   margin: 0 0 0.75rem;
   padding-bottom: 0.3rem;
   border-bottom: 1px solid var(--rule);
-  text-align: center;
 }
 .col ul { margin: 0; padding-left: 0; list-style: none; }
 .col li { margin-bottom: 0.85rem; line-height: 1.45; }
