@@ -1,7 +1,7 @@
 ---
 title: Social Media Post - Mag Matchers
 type: social
-business: map-location-eugene-or-term-spring-2026-founded-2026-05-02-name-mag-matchers-tagline-smart-socks-for-the-intelligent-launderer-description-mag-matchers-is-built-around-a-simple-idea-the-small-frustrations-in-daily-lif
+business: mag-matchers
 date: 2026-05-12
 image: /uploads/happy-guy.png
 imageAlt: Happy guy enjoying his freed time!
