@@ -246,7 +246,25 @@ footer a { color: var(--soft); }
 .post-title { font-size: 1.6rem; font-weight: 400; margin: 0; }
 .post-meta { color: var(--soft); font-size: 0.92rem; margin: 0.25rem 0 1.25rem; }
 .post-body p { margin: 0.85rem 0; font-size: 1.02rem; line-height: 1.6; }
-.post-body img { max-width: 100%; height: auto; }
+
+/* Defensive: cap ANY image inside an article so a 4000px-wide phone screenshot
+   can't blow out the column. Also prevent horizontal overflow at the article
+   container level. */
+.article {
+  overflow-wrap: break-word;
+}
+.article img,
+.post-body img {
+  display: block;
+  max-width: 100%;
+  max-height: 600px;
+  width: auto;
+  height: auto;
+  margin: 1rem auto;
+  object-fit: contain;
+}
+/* The article-photo block (About page building photo) keeps its own bordered styling */
+.article-photo img { border: 1px solid var(--rule); }
 .embed {
   position: relative;
   background: #f3f3f3;
