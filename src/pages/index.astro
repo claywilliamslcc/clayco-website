@@ -45,7 +45,7 @@ const typeLabel = { blog: 'Blog', social: 'Social', video: 'Promo Video' } as co
 <Base>
   <div class="columns">
     <section class="col" id="industries">
-      <h2>Industries — {site.currentTerm}</h2>
+      <h2>Industries | {site.currentTerm}</h2>
       {currentBusinesses.length === 0 ? (
         <p class="empty-state">
           {site.currentTerm} industries will publish here starting Week 4 of class. Each student-run business gets its own page the moment a member creates it.
@@ -53,16 +53,12 @@ const typeLabel = { blog: 'Blog', social: 'Social', video: 'Promo Video' } as co
       ) : (
         <>
           <ul>
-            {currentBusinesses.map((b) => {
-              const last = lastPostByBiz.get(b.slug);
-              return (
-                <li>
-                  <a href={`/industries/${b.slug}`}>{b.data.name}</a>
-                  <span class="desc">{b.data.tagline}{b.data.location ? `, ${b.data.location}` : ''}</span>
-                  {last && <span class="lastpost">Last post: {fmtDate(last)}</span>}
-                </li>
-              );
-            })}
+            {currentBusinesses.map((b) => (
+              <li>
+                <a href={`/industries/${b.slug}`}>{b.data.name}</a>
+                <span class="desc">{b.data.tagline}{b.data.location ? `, ${b.data.location}` : ''}</span>
+              </li>
+            ))}
           </ul>
           {currentBusinesses.length > 7 && (
             <p class="more"><a href="/industries">All {currentBusinesses.length} industries &rarr;</a></p>
@@ -88,7 +84,7 @@ const typeLabel = { blog: 'Blog', social: 'Social', video: 'Promo Video' } as co
               </li>
             ))}
           </ul>
-          <p class="more"><a href="/posts">Older posts &rarr;</a> · <a href="/rss.xml">RSS</a></p>
+          <p class="more"><a href="/posts">Older posts &rarr;</a></p>
         </>
       )}
     </section>
