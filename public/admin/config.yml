@@ -149,7 +149,10 @@ collections:
         widget: "image"
         required: false
         allow_multiple: false
-        hint: "Drag in or upload a photo. The image appears below the title on the post page."
+        media_library:
+          config:
+            multiple: false
+        hint: "Click the gray box below to pick a JPG or PNG from your computer, OR drag a file from your desktop into the box. The image appears below the title on your post page."
 
       - label: "Image alt text (required if you added an image)"
         name: "imageAlt"
