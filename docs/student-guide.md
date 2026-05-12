@@ -21,14 +21,15 @@ You're now logged in. Bookmark this URL — it's where you'll go to write posts:
 
 ---
 
-## 2. The big picture: businesses and posts
+## 2. The big picture: businesses, posts, and comments
 
-ClayCo organizes content in two layers:
+ClayCo organizes content in three layers:
 
 - **Your Business** — one entry, created once at the start of the term. This is your business's identity: name, tagline, description, location.
 - **Posts** — many entries, created throughout the term. Each post is a blog post, a social media post, or a promo video, and is attributed to your business.
+- **Comments** — short replies to other businesses' posts. Attributed to your business, not your personal name.
 
-You'll create **your business first**, then create posts that link to it.
+You'll create **your business first**, then create posts that link to it, and optionally leave comments on other classmates' posts.
 
 ---
 
@@ -82,7 +83,35 @@ A YouTube or Vimeo embed plus a description. Paste the full URL into the Video U
 
 ---
 
-## 6. Common pitfalls
+## 6. Comments (replying to other businesses)
+
+Comments are short replies to other classmates' posts. They appear directly under the post they're responding to, attributed to your business — so when **Mag-Matchers** comments on a **Golden Goose Getaways** post, the byline shows "Mag-Matchers."
+
+### How to add a comment
+
+1. Go to **clayco.work/admin** and log in.
+2. **Comments** in the sidebar → **New Comment**.
+3. Fill in the form:
+   - **Which post are you commenting on?** — pick from the dropdown.
+   - **Commenting as which business?** — pick your business.
+   - **Comment** — write your reply.
+4. Click **Publish**. About a minute later, your comment appears under that post.
+
+### Community moderation
+
+Anyone signed into ClayCo can delete any comment — including yours, and including comments from other businesses. The Delete link only appears when you're logged in; visitors who aren't signed in just see the comments as readers.
+
+Every deletion is logged in the project history, so if someone abuses the delete power, it's traceable. This is intentional: it lets the class self-moderate in real time without waiting for the instructor.
+
+### What's appropriate
+
+- Constructive feedback, questions, encouragement, business-to-business banter that fits your brand voice.
+- Disagreement is fine. Personal attacks, harassment, or anything you wouldn't say in class is not.
+- If something crosses a line, delete it. If it keeps happening, tell Clay.
+
+---
+
+## 7. Common pitfalls
 
 - **"My business doesn't show up in the dropdown when I'm creating a post."** You haven't created your business yet, or you didn't click Publish on it. Go to **Your Business → New Business** first.
 
@@ -94,12 +123,14 @@ A YouTube or Vimeo embed plus a description. Paste the full URL into the Video U
 
 - **"I want to edit or delete a post after publishing."** Go back to `/admin`, click **Posts**, find your post, edit or delete from there. The site updates within a minute.
 
+- **"My comment doesn't appear under the post."** Refresh the page after a minute — the site rebuilds whenever new content publishes. If still missing, check that you picked the correct post in the dropdown.
+
 ---
 
-## 7. Help
+## 8. Help
 
-- **CMS won't let me log in / I forgot my password** — email me (williamsc@lanecc.edu) and I'll reset it.
-- **Site won't load / build error** — let me know; usually a typo in a field. Easy fix.
+- **CMS won't let me log in / I forgot my password** — email Clay (williamsc@lanecc.edu) and he'll reset it.
+- **Site won't load / build error** — let Clay know; usually a typo in a field. Easy fix.
 - **Anything else** — office hours T/Th 10–12, Zoom or by appointment.
 
 This guide also lives in Moodle under the project resources.
