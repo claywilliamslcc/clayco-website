@@ -1,0 +1,41 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection, getEntry } from 'astro:content';
+
+// All posts, newest first.
+const allPosts = (await getCollection('posts')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+
+const postsWithBiz = await Promise.all(
+  allPosts.map(async (post) => {
+    const biz = await getEntry(post.data.business);
+    return { post, biz };
+  })
+);
+
+const fmtShort = (d: Date) =>
+  d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+
+const typeLabel = { blog: 'Blog', social: 'Social', video: 'Promo Video' } as const;
+---
+
+<Base title="All Posts">
+  <article class="article">
+    <h2 class="section-h">All Posts</h2>
+    {postsWithBiz.length === 0 ? (
+      <p class="empty-state">No posts yet.</p>
+    ) : (
+      <ul class="feed">
+        {postsWithBiz.map(({ post, biz }) => (
+          <li>
+            <span class="date">{fmtShort(post.data.date)} ·</span>
+            <a href={`/posts/${post.slug}`}>{typeLabel[post.data.type]}: {post.data.title}</a>
+            <span class="biz">— {biz.data.name}</span>
+          </li>
+        ))}
+      </ul>
+    )}
+    <p class="more" style="margin-top: 2rem;"><a href="/">&larr; Back to homepage</a></p>
+  </article>
+</Base>

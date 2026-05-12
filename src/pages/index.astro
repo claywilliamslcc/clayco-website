@@ -84,7 +84,9 @@ const typeLabel = { blog: 'Blog', social: 'Social', video: 'Promo Video' } as co
               </li>
             ))}
           </ul>
-          <p class="more"><a href="/posts">Older posts &rarr;</a></p>
+          {allPosts.length > recentPosts.length && (
+            <p class="more"><a href="/posts">Older posts &rarr;</a></p>
+          )}
         </>
       )}
     </section>
