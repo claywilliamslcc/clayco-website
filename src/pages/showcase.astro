@@ -1,12 +1,105 @@
 ---
 import Base from '../layouts/Base.astro';
+import { getCollection } from 'astro:content';
 import { site } from '../site.config';
+
+const allBusinesses = await getCollection('businesses');
+const currentBusinesses = allBusinesses
+  .filter((b) => b.data.term === site.currentTerm)
+  .sort((a, b) => a.data.name.localeCompare(b.data.name));
 ---
 
-<Base title="Showcase">
+<Base title="Showcase" description={`The COMM 130 ${site.currentTerm} trade show: June 9, 2026, 2–4 PM, Center Building Commons.`}>
   <article class="article">
-    <h2>Showcase — {site.currentTerm}</h2>
-    <p>The {site.currentTerm} ClayCo trade show takes place during finals week. Each industry presents a five-minute pitch to an audience of peers, faculty, and invited guests.</p>
-    <p style="color: var(--soft); font-style: italic;">Schedule and recordings will appear here as they become available.</p>
+    <h2 class="section-h">Showcase — {site.currentTerm}</h2>
+
+    <p class="event-when">
+      <strong>Tuesday, June 9, 2026</strong><br />
+      <strong>2:00 – 4:00 PM</strong>
+    </p>
+    <p class="event-where">
+      Center Building Commons, Second Floor<br />
+      Lane Community College
+    </p>
+    <p class="event-public">Open to the public. Anyone can attend.</p>
+
+    <p>The COMM 130 {site.currentTerm} trade show. Each ClayCo business sets up its own table on the second floor of the Center Building Commons. No formal presentations or lectures — instead, walk between tables, talk to founders, take brochures, watch promo videos, and ask hard questions.</p>
+
+    <p>At each table you might find:</p>
+    <ul>
+      <li>Brochures and printed materials</li>
+      <li>Live elevator pitches and product demos</li>
+      <li>Promo videos</li>
+      <li>Resumes — founders are presenting their work and themselves</li>
+    </ul>
+
+    <p><strong>Vote for your favorite business.</strong> Ask questions at every table, then cast a vote at the end. Results announced before the session closes.</p>
+
+    <h2 class="section-h" style="margin-top: 2.5rem;">Participating industries</h2>
+    {currentBusinesses.length === 0 ? (
+      <p class="empty-state">Businesses will be listed here as they're created throughout the term.</p>
+    ) : (
+      <ul class="showcase-businesses">
+        {currentBusinesses.map((b) => (
+          <li>
+            <a href={`/industries/${b.slug}`}>{b.data.name}</a>
+            <span class="desc">{b.data.tagline}</span>
+          </li>
+        ))}
+      </ul>
+    )}
+
+    <p class="event-note">Not recorded. To experience the trade show, come in person.</p>
+
+    <p style="margin-top: 1.5rem;">
+      Questions? Email Clay Williams (<a href={`mailto:${site.email}`}>{site.email}</a>).
+    </p>
   </article>
 </Base>
+
+<style>
+  .event-when {
+    text-align: center;
+    font-size: 1.15rem;
+    line-height: 1.5;
+    margin: 1.5rem 0 0.5rem;
+  }
+  .event-where {
+    text-align: center;
+    line-height: 1.5;
+    color: var(--soft);
+    margin: 0 0 1rem;
+  }
+  .event-public {
+    text-align: center;
+    font-style: italic;
+    margin: 0 0 2rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  .event-note {
+    text-align: center;
+    font-style: italic;
+    color: var(--soft);
+    margin: 2rem 0 0;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--rule);
+  }
+  .showcase-businesses {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+  }
+  .showcase-businesses li {
+    padding: 0.6rem 0;
+    line-height: 1.5;
+    border-bottom: 1px dotted var(--rule);
+  }
+  .showcase-businesses li:last-child { border-bottom: 0; }
+  .showcase-businesses .desc {
+    display: block;
+    color: var(--soft);
+    font-size: 0.92rem;
+    margin-top: 0.15rem;
+  }
+</style>
