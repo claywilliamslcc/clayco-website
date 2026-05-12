@@ -16,12 +16,13 @@ const allPosts = (await getCollection('posts')).sort(
 const recentPosts = allPosts.slice(0, 8);
 
 // For each business, find the date of their most recent post.
+// Astro 5: reference fields resolve to { id, collection }.
 const lastPostByBiz = new Map<string, Date>();
 for (const post of allPosts) {
-  const slug = post.data.business.slug;
-  const existing = lastPostByBiz.get(slug);
+  const id = post.data.business.id;
+  const existing = lastPostByBiz.get(id);
   if (!existing || post.data.date > existing) {
-    lastPostByBiz.set(slug, post.data.date);
+    lastPostByBiz.set(id, post.data.date);
   }
 }
 

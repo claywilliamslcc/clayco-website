@@ -161,3 +161,48 @@ collections:
         name: "body"
         widget: "markdown"
         hint: "Write your post here. Use the toolbar above to format text. For social posts, even one short paragraph is fine."
+
+  # =====================================================
+  # COMMENTS — short replies on other businesses' posts
+  # =====================================================
+  - name: "comments"
+    label: "Comments"
+    label_singular: "Comment"
+    description: "Short replies on other businesses' posts. Comments publish instantly, attributed to your business. Anyone signed in can delete any comment if it's off."
+    folder: "src/content/comments"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{hour}}{{minute}}-{{fields.business}}"
+    extension: "md"
+    summary: "{{date | date('YYYY-MM-DD')}} · {{fields.business}} → {{fields.post}}"
+    fields:
+      - label: "Which post are you commenting on?"
+        name: "post"
+        widget: "relation"
+        collection: "posts"
+        search_fields: ["title"]
+        value_field: "{{slug}}"
+        display_fields: ["title"]
+        hint: "Pick the post you want to reply to."
+
+      - label: "Commenting as which business?"
+        name: "business"
+        widget: "relation"
+        collection: "businesses"
+        search_fields: ["name"]
+        value_field: "{{slug}}"
+        display_fields: ["name"]
+        hint: "Your business name will appear as the byline on this comment."
+
+      - label: "Date"
+        name: "date"
+        widget: "datetime"
+        default: ""
+        date_format: "YYYY-MM-DD"
+        time_format: "HH:mm"
+        format: "YYYY-MM-DDTHH:mm"
+        picker_utc: false
+
+      - label: "Comment"
+        name: "body"
+        widget: "markdown"
+        hint: "Write your reply. Keep it civil and constructive — anyone in the class can delete any comment if it's not."

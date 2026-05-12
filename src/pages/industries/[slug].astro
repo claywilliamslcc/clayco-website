@@ -16,7 +16,7 @@ const { Content } = await business.render();
 
 const allPosts = await getCollection('posts');
 const myPosts = allPosts
-  .filter((p) => p.data.business.slug === business.slug)
+  .filter((p) => p.data.business.id === business.slug)
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 
 const fmtShort = (d: Date) =>

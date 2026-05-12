@@ -56,16 +56,95 @@ const desc = description ?? site.description;
   </main>
 
   <script is:inline>
-    // Redirect users who land on the homepage with an Identity invite/recovery
-    // token in the URL hash to the /admin page where the CMS is expecting them.
+    // ============================================================
+    // Netlify Identity bootstrap
+    // ============================================================
+    // 1. Redirect invite/recovery flows on non-/admin pages to /admin.
+    // 2. Reveal inline "Delete" buttons on comments when a user is signed in.
+    // Any signed-in user can delete any comment (community moderation).
+    // Every deletion is a git commit via Git Gateway, audit-trail by design.
+    // ============================================================
+
+    function updateCommentDeleteButtons(user) {
+      const buttons = document.querySelectorAll('.comment-delete');
+      buttons.forEach((btn) => {
+        if (user) {
+          btn.hidden = false;
+          if (!btn.dataset.bound) {
+            btn.addEventListener('click', handleCommentDelete);
+            btn.dataset.bound = '1';
+          }
+        } else {
+          btn.hidden = true;
+        }
+      });
+    }
+
+    async function handleCommentDelete(e) {
+      const btn = e.currentTarget;
+      const path = btn.dataset.commentPath;
+      if (!path) return;
+      if (!confirm('Delete this comment? The deletion will be logged in the project history.')) return;
+
+      btn.disabled = true;
+      const originalText = btn.textContent;
+      btn.textContent = 'Deleting…';
+
+      try {
+        const user = window.netlifyIdentity.currentUser();
+        if (!user) throw new Error('Not signed in');
+        const token = await user.jwt();
+
+        const encodedPath = path.split('/').map(encodeURIComponent).join('/');
+
+        // Fetch current file SHA (required by the GitHub contents API)
+        const getResp = await fetch('/.netlify/git/github/contents/' + encodedPath + '?ref=main', {
+          headers: { Authorization: 'Bearer ' + token },
+        });
+        if (!getResp.ok) throw new Error('Could not look up comment (' + getResp.status + ')');
+        const fileData = await getResp.json();
+
+        // DELETE the comment file
+        const delResp = await fetch('/.netlify/git/github/contents/' + encodedPath, {
+          method: 'DELETE',
+          headers: {
+            Authorization: 'Bearer ' + token,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            message: 'Delete comment via inline button',
+            sha: fileData.sha,
+            branch: 'main',
+          }),
+        });
+        if (!delResp.ok) throw new Error('Delete failed (' + delResp.status + ')');
+
+        // Remove from DOM. Netlify will rebuild within ~60s.
+        const commentEl = btn.closest('.comment');
+        if (commentEl) {
+          commentEl.style.opacity = '0.4';
+          commentEl.style.transition = 'opacity 0.3s';
+          setTimeout(() => commentEl.remove(), 350);
+        }
+      } catch (err) {
+        btn.disabled = false;
+        btn.textContent = originalText;
+        alert('Could not delete: ' + (err.message || 'unknown error'));
+      }
+    }
+
     if (window.netlifyIdentity) {
       window.netlifyIdentity.on('init', (user) => {
-        if (!user) {
+        // Invite/recovery flows on non-/admin pages: send to /admin.
+        if (!user && !location.pathname.startsWith('/admin')) {
           window.netlifyIdentity.on('login', () => {
             document.location.href = '/admin/';
           });
         }
+        updateCommentDeleteButtons(user);
       });
+      window.netlifyIdentity.on('login', (user) => updateCommentDeleteButtons(user));
+      window.netlifyIdentity.on('logout', () => updateCommentDeleteButtons(null));
     }
   </script>
 </body>

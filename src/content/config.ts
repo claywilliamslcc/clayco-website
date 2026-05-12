@@ -47,4 +47,20 @@ const posts = defineCollection({
   }),
 });
 
-export const collections = { businesses, posts };
+/**
+ * A comment from one business on another's post.
+ * Comments publish instantly. Any logged-in user can delete any comment
+ * via the inline button on the post page.
+ * One markdown file per comment in `src/content/comments/`.
+ */
+const comments = defineCollection({
+  type: 'content',
+  schema: z.object({
+    post: reference('posts'),       // which post this comment is on
+    business: reference('businesses'), // which business is commenting (the byline)
+    date: z.coerce.date(),          // coerce so YAML datetime strings (HH:mm) parse cleanly
+    // The comment body is the markdown body of the file (handled by Decap automatically)
+  }),
+});
+
+export const collections = { businesses, posts, comments };
