@@ -11,7 +11,7 @@ const currentBusinesses = allBusinesses
 
 <Base title="Showcase" description={`The COMM 130 ${site.currentTerm} trade show: June 9, 2026, 2–4 PM, Center Building Commons.`}>
   <article class="article">
-    <h2 class="section-h">Showcase — {site.currentTerm}</h2>
+    <h2 class="section-h">Showcase | {site.currentTerm}</h2>
 
     <p class="event-when">
       <strong>Tuesday, June 9, 2026</strong><br />
@@ -30,7 +30,7 @@ const currentBusinesses = allBusinesses
       <li>Brochures and printed materials</li>
       <li>Live elevator pitches and product demos</li>
       <li>Promo videos</li>
-      <li>Resumes — founders are presenting their work and themselves</li>
+      <li>Resumes (founders are presenting their work and themselves)</li>
     </ul>
 
     <p><strong>Vote for your favorite business.</strong> Ask questions at every table, then cast a vote at the end. Results announced before the session closes.</p>
@@ -94,6 +94,7 @@ const currentBusinesses = allBusinesses
     padding: 0.6rem 0;
     line-height: 1.5;
     border-bottom: 1px dotted var(--rule);
+    text-align: center;
   }
   .showcase-businesses li:last-child { border-bottom: 0; }
   .showcase-businesses .desc {
