@@ -123,7 +123,7 @@ collections:
         widget: "relation"
         collection: "businesses"
         search_fields: ["name"]
-        value_field: "{{slug}}"
+        value_field: "{{filename}}"
         display_fields: ["name"]
         hint: "Pick your business. (If yours isn't here yet, go create it under 'Your Business' first.)"
 
@@ -183,7 +183,7 @@ collections:
         widget: "relation"
         collection: "posts"
         search_fields: ["title"]
-        value_field: "{{slug}}"
+        value_field: "{{filename}}"
         display_fields: ["title"]
         hint: "Pick the post you want to reply to."
 
@@ -192,7 +192,7 @@ collections:
         widget: "relation"
         collection: "businesses"
         search_fields: ["name"]
-        value_field: "{{slug}}"
+        value_field: "{{filename}}"
         display_fields: ["name"]
         hint: "Your business name will appear as the byline on this comment."
 
