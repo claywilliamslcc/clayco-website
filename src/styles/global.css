@@ -79,6 +79,18 @@ nav.primary {
   font-size: 0.95rem;
 }
 nav.primary a { margin: 0 0.6rem; }
+nav.primary a.signin {
+  margin-left: 1.5rem;
+  padding-left: 1.2rem;
+  border-left: 1px solid var(--rule);
+}
+@media (max-width: 600px) {
+  nav.primary a.signin {
+    margin-left: 0.6rem;
+    padding-left: 0;
+    border-left: 0;
+  }
+}
 
 /* ============== Links ============== */
 a { color: var(--link); text-decoration: underline; }
