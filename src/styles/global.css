@@ -110,7 +110,7 @@ a:focus-visible {
   padding-bottom: 0.25rem;
   border-bottom: 1px solid var(--rule);
 }
-.col ul { margin: 0; padding-left: 1.25rem; }
+.col ul { margin: 0; padding-left: 0; list-style: none; }
 .col li { margin-bottom: 0.85rem; line-height: 1.45; }
 .col li .desc {
   display: block;
@@ -128,7 +128,7 @@ a:focus-visible {
 .col .more { margin-top: 1rem; font-size: 0.95rem; }
 
 /* ============== Recent posts feed ============== */
-ul.feed { list-style: disc; padding-left: 1.25rem; margin: 0; }
+ul.feed { list-style: none; padding-left: 0; margin: 0; }
 ul.feed li { margin-bottom: 0.75rem; }
 .feed .date { color: var(--soft); font-size: 0.85rem; }
 .feed .biz  { color: var(--ink); }
