@@ -3,7 +3,7 @@ title: G.R.E.E.N. Neighbor Instagram Post
 type: social
 business: map-location-eugene-or-term-spring-2026-founded-2026-04-25-name-g-r-e-e-n-neighbor-tagline-non-profit-cooperative-sustainable-and-educational-grocery-and-garden-description-g-r-e-e-n-is-a-cooperative-non-profit-ba
 date: 2026-05-09
-image: https://www.instagram.com/p/DYGj-ncEqe_/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==
+image: /uploads/screenshot-2026-05-12-151623.png
 imageAlt: An image of the G.R.E.E.N. Neighbor logo
 ---
 We are the Grown Responsibly Equitable Eating Network proudly emerging to serve Lane County through Green Neighbor Garden and Green Neighbor Grocery.
