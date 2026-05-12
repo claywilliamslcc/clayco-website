@@ -6,7 +6,7 @@ date: 2026-05-11
 ---
 Happy Tuesday flock!
 
-Today and today only we are offering 20% off if you book a trip with us for today only!
+Today and today only we are offering 20% off if you book a trip with us!
 
 For our app members, use code: <3FLOCK to claim a golden egg! 
 
