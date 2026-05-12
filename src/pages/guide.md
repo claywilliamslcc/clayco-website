@@ -1,0 +1,113 @@
+---
+layout: ../layouts/MarkdownPage.astro
+title: "Student Guide"
+description: "How to publish your business, blog posts, social media posts, and promo videos on ClayCo."
+---
+
+# Publishing on ClayCo — Student Guide
+
+ClayCo is the public-facing publishing platform for COMM 130 student businesses. Every blog post, social media post, and promo video your business creates this term gets published at **clayco.work**, under your business's byline, where anyone in the world can read it.
+
+This guide should take about 5 minutes to read and 10 minutes to do your first post.
+
+---
+
+## 1. Accept your invite
+
+You'll get an email from Netlify Identity inviting you to set up your account. Subject line: *"You've been invited to join ClayCo."* If you don't see it, check your spam folder.
+
+1. Click the **"Accept the invite"** link in the email.
+2. The ClayCo site opens with a password modal.
+3. Set a password you'll remember. Email is already filled in — leave it.
+4. Click **Sign Up**.
+
+You're now logged in. Bookmark this URL — it's where you'll go to write posts:
+
+> **[clayco.work/admin](/admin)**
+
+---
+
+## 2. The big picture: businesses and posts
+
+ClayCo organizes content in two layers:
+
+- **Your Business** — one entry, created once at the start of the term. This is your business's identity: name, tagline, description, location.
+- **Posts** — many entries, created throughout the term. Each post is a blog post, a social media post, or a promo video, and is attributed to your business.
+
+You'll create **your business first**, then create posts that link to it.
+
+---
+
+## 3. Create your business (do this once, at the start of the term)
+
+1. Go to **[clayco.work/admin](/admin)** and log in.
+2. In the left sidebar, click **Your Business**.
+3. Click **New Business** in the top right.
+4. Fill in the form:
+   - **Business name** — the official name. *Example: "Riverside Bicycle Co."*
+   - **One-line tagline** — 5–10 words describing what you do. *Example: "Sustainable bike repair and refurbishment."*
+   - **Description** — 1–3 sentences introducing your business. This appears at the top of your business page.
+   - **Location** — defaults to *Eugene, OR*. Change if your fictional business is elsewhere.
+   - **Term** — leave as *Spring 2026*.
+   - **Founded** — the day your group started this project.
+   - **External links** (optional) — Instagram, YouTube, or website URLs if your business has any.
+5. Click **Publish** in the top right.
+
+Within about a minute, your business's page goes live at `clayco.work/industries/your-business-name`. Check the **[Industries](/#industries)** list on the homepage — you should see it there.
+
+---
+
+## 4. Create a post
+
+1. **[clayco.work/admin](/admin)** → **Posts** in the sidebar → **New Post**.
+2. Fill in the form:
+   - **Title** — the headline of your post. Don't include "Blog:" or "Social:" — the site adds those automatically.
+   - **What kind of post is this?** — pick Blog, Social, or Promo Video.
+   - **Which business is this from?** — pick your business from the dropdown.
+   - **Date** — defaults to today.
+   - **Video URL** — only for Promo Video posts. Paste the full YouTube or Vimeo URL.
+   - **Image** — optional, especially good for social posts.
+   - **Image alt text** — required if you added an image. One short sentence describing the image.
+   - **Body** — the actual content. Use the toolbar above the field for formatting.
+3. Click **Publish**. About a minute later, your post is live and appears in **[Recent Posts](/#posts)** on the homepage.
+
+---
+
+## 5. The three content types
+
+Pick the type that matches what you're writing.
+
+### Blog Post
+Long-form writing, a paragraph or more. Use for thought pieces, announcements, customer stories, behind-the-scenes posts. *Examples: "Why we don't sell new bikes," "A day at the riso," "How we source our coffee."*
+
+### Social Media Post
+Short, casual, image-friendly. Even one short paragraph is fine. Use for quick announcements, event mentions, photo posts. *Examples: "Saturday market preview," "May roast schedule," "New zines in stock."*
+
+### Promo Video
+A YouTube or Vimeo embed plus a description. Paste the full URL into the Video URL field. *Examples: "How we source our frames," "Meet the team," "Behind the scenes of our spring drop."*
+
+---
+
+## 6. Common pitfalls
+
+- **"My business doesn't show up in the dropdown when I'm creating a post."** You haven't created your business yet, or you didn't click Publish on it. Go to **Your Business → New Business** first.
+
+- **"I uploaded an image but I'm not sure what to put in alt text."** Describe the image in one sentence as if telling someone over the phone what's in it. *Example: "A blue and white bicycle leaning against a brick wall outside a workshop."* If the image is purely decorative, leave alt text blank.
+
+- **"My post doesn't have the right type label."** The site adds "Blog:", "Social:", or "Promo Video:" based on the type field, not your title. Don't include the type in your title.
+
+- **"My video isn't embedding."** Make sure the URL is from YouTube or Vimeo, and copy the full URL (starts with `https://`). Other video platforms aren't supported.
+
+- **"I want to edit or delete a post after publishing."** Go back to **[/admin](/admin)**, click **Posts**, find your post, edit or delete from there. The site updates within a minute.
+
+---
+
+## 7. Help
+
+- **CMS won't let me log in / I forgot my password** — email Clay (williamsc@lanecc.edu) and he'll reset it.
+- **Site won't load / build error** — let Clay know; usually a typo in a field. Easy fix.
+- **Anything else** — office hours T/Th 10–12, Zoom or by appointment.
+
+---
+
+*Spring 2026 · Lane Community College · COMM 130*

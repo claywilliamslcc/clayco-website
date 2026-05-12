@@ -163,6 +163,49 @@ ul.feed li { margin-bottom: 0.75rem; }
   margin: 0.75rem 0;
   line-height: 1.55;
 }
+
+/* ============== Markdown pages (e.g. /guide) ============== */
+.markdown h1 {
+  font-size: 1.6rem;
+  font-weight: 400;
+  text-align: center;
+  margin: 0 0 0.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--rule);
+}
+.markdown h2 {
+  text-align: left;
+  border-bottom: 1px solid var(--rule);
+  margin-top: 2rem;
+  padding-bottom: 0.3rem;
+}
+.markdown h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin: 1.25rem 0 0.4rem;
+}
+.markdown ol, .markdown ul {
+  padding-left: 1.4rem;
+  margin: 0.75rem 0;
+}
+.markdown li { margin-bottom: 0.35rem; line-height: 1.55; }
+.markdown li ul, .markdown li ol { margin: 0.25rem 0; }
+.markdown blockquote {
+  border-left: 3px solid var(--gold);
+  margin: 1rem 0;
+  padding: 0.5rem 0 0.5rem 1rem;
+  color: var(--ink);
+  font-style: normal;
+  background: #fffbeb;
+}
+.markdown hr {
+  border: 0;
+  border-top: 1px solid var(--rule);
+  margin: 2rem 0;
+}
+.markdown p { line-height: 1.6; }
+.markdown em { font-style: italic; }
+.markdown strong { font-weight: 700; }
 .article-photo { margin: 1.5rem 0 0; text-align: center; }
 .article-photo img {
   display: block;
