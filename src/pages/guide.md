@@ -12,18 +12,16 @@ This guide should take about 5 minutes to read and 10 minutes to do your first p
 
 ---
 
-## 1. Accept your invite
+## 1. Create your account
 
-You'll get an email from Netlify Identity inviting you to set up your account. Subject line: *"You've been invited to join ClayCo."* If you don't see it, check your spam folder.
+Go to **[clayco.work/admin](/admin)** in your browser. Bookmark this URL — it's where you'll write everything.
 
-1. Click the **"Accept the invite"** link in the email.
-2. The ClayCo site opens with a password modal.
-3. Set a password you'll remember. Email is already filled in — leave it.
+1. You'll see a **Log in with Netlify Identity** button. Click it.
+2. The login modal opens. Click the **Sign Up** tab at the top.
+3. Enter your **Lane email address** (`yourname@my.lanecc.edu`) and a password you'll remember.
 4. Click **Sign Up**.
 
-You're now logged in. Bookmark this URL — it's where you'll go to write posts:
-
-> **[clayco.work/admin](/admin)**
+You're in immediately — no confirmation email, no waiting. Your account works the next time you visit `clayco.work/admin` too.
 
 ---
 
