@@ -1,7 +1,7 @@
 ---
 title: Exclusive Tuesday Deals On Our App
 type: social
-business: map-location-eugene-or-term-spring-2026-founded-2026-04-21-name-golden-goose-getaways-tagline-travel-smarter-spend-wiser-description-golden-goose-getaways-is-the-perfect-travel-planning-app-that-finds-you-the-best-pr
+business: golden-goose-getaways
 date: 2026-05-11
 ---
 Happy Tuesday flock!
