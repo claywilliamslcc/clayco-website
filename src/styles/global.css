@@ -125,7 +125,7 @@ a:focus-visible {
   font-style: italic;
   margin-top: 0.1rem;
 }
-.col .more { margin-top: 1rem; font-size: 0.95rem; }
+.col .more { margin-top: 1rem; font-size: 0.95rem; text-align: right; }
 
 /* ============== Recent posts feed ============== */
 ul.feed { list-style: none; padding-left: 0; margin: 0; }
