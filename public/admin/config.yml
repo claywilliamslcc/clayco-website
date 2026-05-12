@@ -31,6 +31,7 @@ collections:
     description: "Each student-run business has one entry here. Create yours before you post."
     folder: "src/content/businesses"
     create: true
+    identifier_field: "name"
     slug: "{{slug}}"
     extension: "md"
     summary: "{{name}} — {{tagline}}"

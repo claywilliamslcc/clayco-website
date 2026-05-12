@@ -1,5 +1,16 @@
 import { defineCollection, z, reference } from 'astro:content';
 
+// Decap CMS writes empty strings ("") for optional fields the student leaves
+// blank. Zod's .url() and .date() validators reject empty strings even when
+// the field is .optional(). This preprocessor converts empty/whitespace strings
+// to undefined so optional() actually behaves as expected.
+const emptyToUndefined = (val: unknown) =>
+  typeof val === 'string' && val.trim() === '' ? undefined : val;
+
+const optionalUrl = () => z.preprocess(emptyToUndefined, z.string().url().optional());
+const optionalDate = () => z.preprocess(emptyToUndefined, z.coerce.date().optional());
+const optionalString = () => z.preprocess(emptyToUndefined, z.string().optional());
+
 /**
  * A student-run fictional business publishing under ClayCo.
  * One markdown file per business in `src/content/businesses/`.
@@ -12,14 +23,13 @@ const businesses = defineCollection({
     description: z.string(),
     location: z.string().default('Eugene, OR'),
     term: z.string(), // e.g. "Spring 2026"
-    founded: z.date(),
-    archived: z.date().optional(), // set when the term ends
-    // Optional: link to the student's external work
+    founded: z.coerce.date(),
+    archived: optionalDate(),
     external: z
       .object({
-        instagram: z.string().url().optional(),
-        youtube: z.string().url().optional(),
-        website: z.string().url().optional(),
+        instagram: optionalUrl(),
+        youtube: optionalUrl(),
+        website: optionalUrl(),
       })
       .optional(),
   }),
@@ -35,31 +45,24 @@ const posts = defineCollection({
     title: z.string(),
     type: z.enum(['blog', 'social', 'video']),
     business: reference('businesses'),
-    date: z.date(),
-    // For video posts: external URL (YouTube, Vimeo) or direct asset
-    videoUrl: z.string().url().optional(),
-    // For posts that include an image (especially social posts)
-    image: z.string().optional(),
-    imageAlt: z.string().optional(),
-    // Term is inherited from the business at build time but can be
-    // overridden if a business publishes across terms (rare).
-    term: z.string().optional(),
+    date: z.coerce.date(),
+    videoUrl: optionalUrl(),
+    image: optionalString(),
+    imageAlt: optionalString(),
+    term: optionalString(),
   }),
 });
 
 /**
  * A comment from one business on another's post.
- * Comments publish instantly. Any logged-in user can delete any comment
- * via the inline button on the post page.
  * One markdown file per comment in `src/content/comments/`.
  */
 const comments = defineCollection({
   type: 'content',
   schema: z.object({
-    post: reference('posts'),       // which post this comment is on
-    business: reference('businesses'), // which business is commenting (the byline)
-    date: z.coerce.date(),          // coerce so YAML datetime strings (HH:mm) parse cleanly
-    // The comment body is the markdown body of the file (handled by Decap automatically)
+    post: reference('posts'),
+    business: reference('businesses'),
+    date: z.coerce.date(),
   }),
 });
 
