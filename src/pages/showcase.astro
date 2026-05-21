@@ -9,13 +9,22 @@ const currentBusinesses = allBusinesses
   .sort((a, b) => a.data.name.localeCompare(b.data.name));
 ---
 
-<Base title="Showcase" description={`The COMM 130 ${site.currentTerm} trade show: June 9, 2026, 2–4 PM, Center Building Commons.`}>
+<Base title="Showcase" description={`The COMM 130 ${site.currentTerm} trade show: June 9, 2026, 2–3 PM, Center Building Commons.`}>
   <article class="article">
     <h2 class="section-h">Showcase | {site.currentTerm}</h2>
 
+    <figure class="showcase-poster">
+      <a href="/showcase/comm130-showcase-sp26.pdf" aria-label="Download the COMM 130 Showcase poster as PDF">
+        <img src="/showcase/comm130-showcase-sp26.jpg" alt="COMM 130 Showcase — June 9, 2 PM, CEN 2nd Floor — featuring Borderless En-Counter, Golden Goose Getaways, Elite Forge, Mag-Matchers, G.R.E.E.N. Neighbor, and The Farmer's Kitchen" width="2592" height="3456" />
+      </a>
+      <figcaption>
+        <a href="/showcase/comm130-showcase-sp26.pdf">Download poster (PDF)</a>
+      </figcaption>
+    </figure>
+
     <p class="event-when">
       <strong>Tuesday, June 9, 2026</strong><br />
-      <strong>2:00 – 4:00 PM</strong>
+      <strong>2:00 – 3:00 PM</strong>
     </p>
     <p class="event-where">
       Center Building Commons, Second Floor<br />
@@ -102,5 +111,23 @@ const currentBusinesses = allBusinesses
     color: var(--soft);
     font-size: 0.92rem;
     margin-top: 0.15rem;
+  }
+  .showcase-poster {
+    margin: 1.5rem 0 2rem;
+    text-align: center;
+  }
+  .showcase-poster img {
+    display: block;
+    max-width: 100%;
+    max-height: 720px;
+    width: auto;
+    height: auto;
+    margin: 0 auto;
+    border: 1px solid var(--rule);
+  }
+  .showcase-poster figcaption {
+    margin-top: 0.6rem;
+    font-size: 0.9rem;
+    color: var(--soft);
   }
 </style>
