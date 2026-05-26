@@ -83,7 +83,13 @@ Long-form writing, a paragraph or more. Use for thought pieces, announcements, c
 Short, casual, image-friendly. Even one short paragraph is fine. Use for quick announcements, event mentions, photo posts. *Examples: "Saturday market preview," "May roast schedule," "New zines in stock."*
 
 ### Promo Video
-A YouTube or Vimeo embed plus a description. Paste the full URL into the Video URL field. *Examples: "How we source our frames," "Meet the team," "Behind the scenes of our spring drop."*
+An embedded video plus a description. Paste the full URL into the Video URL field. Supports:
+
+- **YouTube** — copy the URL from the address bar or the share button.
+- **Vimeo** — copy the URL from the address bar.
+- **Google Drive** — upload your video to Drive, click **Share**, set "General access" to **Anyone with the link**, then copy the link.
+
+*Examples: "How we source our frames," "Meet the team," "Behind the scenes of our spring drop."*
 
 ---
 
@@ -123,7 +129,7 @@ Every deletion is logged in the project history, so if someone abuses the delete
 
 - **"My post doesn't have the right type label."** The site adds "Blog:", "Social:", or "Promo Video:" based on the type field, not your title. Don't include the type in your title.
 
-- **"My video isn't embedding."** Make sure the URL is from YouTube or Vimeo, and copy the full URL (starts with `https://`). Other video platforms aren't supported.
+- **"My video isn't embedding."** Make sure the URL is from YouTube, Vimeo, or Google Drive, and copy the full URL (starts with `https://`). For Google Drive, double-check that sharing is set to "Anyone with the link" — otherwise viewers see an access-denied page inside the embed.
 
 - **"I want to edit or delete a post after publishing."** Go back to **[/admin](/admin)**, click **Posts**, find your post, edit or delete from there. The site updates within a minute.
 
