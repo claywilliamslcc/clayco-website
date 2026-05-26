@@ -10,4 +10,7 @@ description: >
 location: Eugene, OR
 term: Spring 2026
 founded: 2026-04-21
+external:
+  youtube: https://youtube.com/shorts/6gq2E_5ICo8?si=ms4hhTw5m1OB9O07
+  website: https://sites.google.com/view/goldengoosegetaways
 ---
