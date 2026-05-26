@@ -3,7 +3,7 @@ title: Mag-Matchers Website Social Media Post
 type: social
 business: mag-matchers
 date: 2026-05-26
-image: https://drive.google.com/file/d/108RTtAtwtv3FcmcMXH6LQ_4CnuloUt82/view?usp=sharing
+image: /uploads/magmatchers-social-post-2.jpg
 imageAlt: ""
 ---
 Your next laundry-day fix is just one click away. 🧦✨
