@@ -37,23 +37,31 @@ const renderedComments = await Promise.all(
   })
 );
 
-// Convert YouTube/Vimeo/Google Drive URLs to embed URLs.
-function embedUrl(url?: string): string | null {
+// Detect video URLs and return structured embed info. Three categories:
+//   iframe — YouTube/Vimeo/Google Drive (clean iframe URLs)
+//   instagram — IG Reels/Posts (needs the official Instagram embed widget)
+type EmbedInfo =
+  | { type: 'iframe'; src: string }
+  | { type: 'instagram'; url: string }
+  | null;
+
+function getEmbed(url?: string): EmbedInfo {
   if (!url) return null;
   const yt = url.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|v\/|shorts\/))([\w-]+)/);
-  if (yt) return `https://www.youtube.com/embed/${yt[1]}`;
+  if (yt) return { type: 'iframe', src: `https://www.youtube.com/embed/${yt[1]}` };
   const vm = url.match(/vimeo\.com\/(\d+)/);
-  if (vm) return `https://player.vimeo.com/video/${vm[1]}`;
-  // Google Drive — supports both share-link formats:
-  //   https://drive.google.com/file/d/<FILE_ID>/view?usp=sharing
-  //   https://drive.google.com/open?id=<FILE_ID>
+  if (vm) return { type: 'iframe', src: `https://player.vimeo.com/video/${vm[1]}` };
   const gdFile = url.match(/drive\.google\.com\/file\/d\/([\w-]+)/);
-  if (gdFile) return `https://drive.google.com/file/d/${gdFile[1]}/preview`;
+  if (gdFile) return { type: 'iframe', src: `https://drive.google.com/file/d/${gdFile[1]}/preview` };
   const gdOpen = url.match(/drive\.google\.com\/open\?id=([\w-]+)/);
-  if (gdOpen) return `https://drive.google.com/file/d/${gdOpen[1]}/preview`;
+  if (gdOpen) return { type: 'iframe', src: `https://drive.google.com/file/d/${gdOpen[1]}/preview` };
+  // Instagram Reels, regular Posts, and IGTV — uses Instagram's blockquote widget
+  if (/instagram\.com\/(reel|p|tv)\/[\w-]+/.test(url)) {
+    return { type: 'instagram', url };
+  }
   return null;
 }
-const embed = embedUrl(post.data.videoUrl);
+const embed = getEmbed(post.data.videoUrl);
 ---
 
 <Base title={post.data.title} description={`${typeLabel[post.data.type]} from ${business.data.name}`}>
@@ -65,15 +73,28 @@ const embed = embedUrl(post.data.videoUrl);
       · {typeLabel[post.data.type]}
     </p>
 
-    {embed && (
+    {embed?.type === 'iframe' && (
       <div class="embed">
         <iframe
-          src={embed}
+          src={embed.src}
           title={post.data.title}
           loading="lazy"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowfullscreen
         ></iframe>
+      </div>
+    )}
+    {embed?.type === 'instagram' && (
+      <div class="embed-instagram">
+        <blockquote
+          class="instagram-media"
+          data-instgrm-captioned
+          data-instgrm-permalink={embed.url}
+          data-instgrm-version="14"
+        >
+          <a href={embed.url} target="_blank" rel="noopener">View this post on Instagram</a>
+        </blockquote>
+        <script async src="https://www.instagram.com/embed.js"></script>
       </div>
     )}
 

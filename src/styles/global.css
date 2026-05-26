@@ -293,6 +293,17 @@ footer a { color: var(--soft); }
   border: 0;
 }
 
+/* Instagram blockquote embed — sizes itself naturally after the
+   Instagram widget script processes it. No fixed aspect ratio. */
+.embed-instagram {
+  margin: 1.25rem auto;
+  max-width: 540px;
+  min-height: 200px;
+}
+.embed-instagram .instagram-media {
+  margin: 0 auto !important;
+}
+
 /* ============== Comments ============== */
 .comments {
   margin-top: 3rem;

@@ -142,8 +142,8 @@ collections:
         name: "videoUrl"
         widget: "string"
         required: false
-        pattern: ['^https?://(www\.)?(youtube\.com|youtu\.be|vimeo\.com|drive\.google\.com)', "Must be a YouTube, Vimeo, or Google Drive share URL"]
-        hint: "Paste the full URL from YouTube, Vimeo, or a Google Drive share link. For Google Drive, set sharing to 'Anyone with the link' first. Leave blank for blog or social posts."
+        pattern: ['^https?://(www\.)?(youtube\.com|youtu\.be|vimeo\.com|drive\.google\.com|instagram\.com)', "Must be a YouTube, Vimeo, Google Drive, or Instagram URL"]
+        hint: "Paste the full URL from YouTube, Vimeo, a Google Drive share link, or an Instagram Reel/Post. For Google Drive: set sharing to 'Anyone with the link.' For Instagram: the account must be public."
 
       - label: "Image (optional, great for social posts)"
         name: "image"
