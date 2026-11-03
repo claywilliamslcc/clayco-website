@@ -7,7 +7,7 @@ description: >
   through movement, nutrition, recovery, and mindful living. We create a space
   where people can grow stronger, restore balance, and feel their best, inside
   and out. We’re more than a membership– We’re a way of life. 
-location: Eugene, OR
-term: Spring 2026
+location: Miami, FL
+term: Fall 2026
 founded: 2026-10-20
 ---
