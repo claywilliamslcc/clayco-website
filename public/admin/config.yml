@@ -28,13 +28,13 @@ collections:
   - name: "businesses"
     label: "Your Business"
     label_singular: "Business"
-    description: "Each student-run business has one entry here. Create yours before you post."
+    description: "Each student-run business has one entry here. One member per group creates it, before anyone posts."
     folder: "src/content/businesses"
     create: true
     identifier_field: "name"
     slug: "{{slug}}"
     extension: "md"
-    summary: "{{name}} — {{tagline}}"
+    summary: "{{name}} · {{tagline}}"
     fields:
       - label: "Business name"
         name: "name"
@@ -60,8 +60,8 @@ collections:
       - label: "Term"
         name: "term"
         widget: "string"
-        default: "Spring 2026"
-        hint: "Don't change this unless your instructor tells you to."
+        default: "Fall 2026"
+        hint: "Already set to the current term. Don't change this unless your instructor tells you to."
 
       - label: "Founded"
         name: "founded"
@@ -108,15 +108,15 @@ collections:
       - label: "Title"
         name: "title"
         widget: "string"
-        hint: "The headline of your post. Example: 'Why we don't sell new bikes' (don't include the type label — the site adds 'Blog:' or 'Social:' automatically)."
+        hint: "The headline of your post. Example: 'Why we don't sell new bikes' (don't include the type label; the site adds 'Blog:' or 'Social:' automatically)."
 
       - label: "What kind of post is this?"
         name: "type"
         widget: "select"
         options:
-          - { label: "Blog Post — long-form writing (a paragraph or more)", value: "blog" }
-          - { label: "Social Media Post — short, image-friendly, casual", value: "social" }
-          - { label: "Promo Video — embeds a YouTube or Vimeo video", value: "video" }
+          - { label: "Blog Post: long-form writing (a paragraph or more)", value: "blog" }
+          - { label: "Social Media Post: short, image-friendly, casual", value: "social" }
+          - { label: "Promo Video: embeds a YouTube, Vimeo, Google Drive, or Instagram video", value: "video" }
         hint: "Pick one. This determines how your post is labeled and what fields you should fill in below."
 
       - label: "Which business is this from?"
@@ -209,4 +209,4 @@ collections:
       - label: "Comment"
         name: "body"
         widget: "markdown"
-        hint: "Write your reply. Keep it civil and constructive — anyone in the class can delete any comment if it's not."
+        hint: "Write your reply. Keep it civil and constructive. Anyone in the class can delete any comment if it's not."

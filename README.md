@@ -32,10 +32,14 @@ Schemas live in `src/content/config.ts`.
 
 ## Term lifecycle
 
-Each business and post has a `term` field (e.g., `"Spring 2026"`). The homepage filters Industries to whatever `site.currentTerm` is set to in `src/site.config.ts`. To roll over to a new term:
+Each business has a `term` field (e.g., `"Fall 2026"`), and posts inherit their business's term. The homepage shows only the current term's industries and posts. Every earlier term is listed under Past Industries: a short list on the homepage and the full archive at `/industries`. Pages and posts stay live at the same URLs indefinitely.
 
-1. Edit `src/site.config.ts` and change `currentTerm`.
-2. Prior term's businesses automatically slide into the (currently hidden) Past Industries archive. Posts and pages stay live indefinitely.
+To roll over to a new term:
+
+1. `src/site.config.ts`: change `currentTerm`; update `showcase` (date, time, place; set `poster` back to `null` until the new poster exists); add the ending term to `pastTerms` if its showcase poster should stay linked from the archive.
+2. `public/admin/config.yml`: change the Term field's `default` to the new term, so new businesses land in the right term.
+3. Netlify, Identity tab: delete the previous term's student accounts (sort by created date). Every signed-in account can edit any content, so old accounts shouldn't linger.
+4. Student guide (`src/pages/guide.md`, mirrored in `docs/student-guide.md`): check office hours and anything else term-specific.
 
 ## Local development
 
@@ -72,6 +76,8 @@ clayco-website/
 ├── scripts/
 │   └── rename-businesses.sh # One-time script (already run, kept for reference)
 ├── src/
+│   ├── lib/
+│   │   └── terms.ts         # Term sorting + Industries-by-term helper
 │   ├── content/
 │   │   ├── config.ts
 │   │   ├── businesses/
@@ -82,6 +88,7 @@ clayco-website/
 │   │   └── MarkdownPage.astro
 │   ├── pages/
 │   │   ├── index.astro
+│   │   ├── industries/index.astro   # Current + Past Industries directory
 │   │   ├── industries/[slug].astro
 │   │   ├── posts/[slug].astro
 │   │   ├── posts/index.astro

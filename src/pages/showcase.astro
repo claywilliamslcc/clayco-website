@@ -7,39 +7,43 @@ const allBusinesses = await getCollection('businesses');
 const currentBusinesses = allBusinesses
   .filter((b) => b.data.term === site.currentTerm)
   .sort((a, b) => a.data.name.localeCompare(b.data.name));
+
+const show = site.showcase;
 ---
 
-<Base title="Showcase" description={`The COMM 130 ${site.currentTerm} trade show: June 9, 2026, 2–3 PM, Center Building Commons.`}>
+<Base title="Showcase" description={`The COMM 130 ${site.currentTerm} trade show: ${show.date}, ${show.time}, ${show.place}, ${site.institution}.`}>
   <article class="article">
     <h2 class="section-h">Showcase | {site.currentTerm}</h2>
 
-    <figure class="showcase-poster">
-      <a href="/showcase/comm130-showcase-sp26.pdf" aria-label="Download the COMM 130 Showcase poster as PDF">
-        <img src="/showcase/comm130-showcase-sp26.jpg" alt="COMM 130 Showcase — June 9, 2 PM, CEN 2nd Floor — featuring Borderless En-Counter, Golden Goose Getaways, Elite Forge, Mag-Matchers, G.R.E.E.N. Neighbor, and The Farmer's Kitchen" width="2592" height="3456" />
-      </a>
-      <figcaption>
-        <a href="/showcase/comm130-showcase-sp26.pdf">Download poster (PDF)</a>
-      </figcaption>
-    </figure>
+    {show.poster && (
+      <figure class="showcase-poster">
+        <a href={show.poster.pdf} aria-label="Download the COMM 130 Showcase poster as PDF">
+          <img src={show.poster.image} alt={show.poster.alt} width={show.poster.width} height={show.poster.height} />
+        </a>
+        <figcaption>
+          <a href={show.poster.pdf}>Download poster (PDF)</a>
+        </figcaption>
+      </figure>
+    )}
 
     <p class="event-when">
-      <strong>Tuesday, June 9, 2026</strong><br />
-      <strong>2:00 – 3:00 PM</strong>
+      <strong>{show.date}</strong><br />
+      <strong>{show.time}</strong>
     </p>
     <p class="event-where">
-      Center Building Commons, Second Floor<br />
-      Lane Community College
+      {show.place}<br />
+      {site.institution}
     </p>
     <p class="event-public">Open to the public. Anyone can attend.</p>
 
-    <p>The COMM 130 {site.currentTerm} trade show. Each ClayCo business sets up its own table on the second floor of the Center Building Commons. No formal presentations or lectures. Instead, walk between tables, talk to founders, take brochures, watch promo videos, and ask hard questions.</p>
+    <p>The COMM 130 {site.currentTerm} trade show. Each ClayCo business sets up its own table. No formal presentations or lectures. Instead, walk between tables, talk to founders, take brochures, watch promo videos, and ask hard questions.</p>
 
     <p>At each table you might find:</p>
     <ul>
-      <li>Brochures and printed materials</li>
-      <li>Live elevator pitches and product demos</li>
+      <li>Brochures and newsletters</li>
       <li>Promo videos</li>
-      <li>Resumes (founders are presenting their work and themselves)</li>
+      <li>Company websites, live on a device</li>
+      <li>Final portfolios of the term's work</li>
     </ul>
 
     <p><strong>Vote for your favorite business.</strong> Ask questions at every table, then cast a vote at the end. Results announced before the session closes.</p>

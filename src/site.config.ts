@@ -1,10 +1,12 @@
 /**
  * Site-wide configuration.
  *
- * Edit `currentTerm` at the start of each new term. The homepage filters
- * Industries to this value; everything else is automatically considered
- * "past." Posts and pages from prior terms remain live indefinitely at
- * the same URLs.
+ * Edit `currentTerm` at the start of each new term. The homepage shows only
+ * the current term's industries and posts; every earlier term moves to
+ * Past Industries (/industries). Posts and pages from prior terms remain
+ * live indefinitely at the same URLs.
+ *
+ * Full rollover checklist: README.md, "Term lifecycle".
  */
 export const site = {
   name: 'ClayCo',
@@ -15,18 +17,39 @@ export const site = {
   email: 'williamsc@lanecc.edu',
 
   /**
-   * The currently active term. When this changes (e.g. to "Fall 2026"),
-   * Spring 2026 industries automatically become "Past" and stop appearing
-   * on the homepage. Their pages and posts remain live.
+   * The currently active term. Must match the `term` value on this term's
+   * businesses and the `term` default in public/admin/config.yml.
    */
-  currentTerm: 'Spring 2026',
+  currentTerm: 'Fall 2026',
 
   /**
-   * Toggle Past Industries surfaces on the public site.
-   * Hidden until we have at least one past term to show.
+   * Show Past Industries surfaces on the public site: the archive section
+   * of /industries and the Past Industries list on the homepage.
    */
-  showPastIndustries: false,
+  showPastIndustries: true,
+
+  /**
+   * The current term's trade show, shown on /showcase. Update each term.
+   * Once the event poster exists, set `poster`, e.g.
+   *   { image: '/showcase/comm130-showcase-f26.jpg', pdf: '/showcase/comm130-showcase-f26.pdf',
+   *     alt: 'COMM 130 Showcase, December 8, ...', width: 2592, height: 3456 }
+   */
+  showcase: {
+    date: 'Tuesday, December 8, 2026',
+    time: '1:00 – 3:00 PM',
+    place: 'Center Building, Room 453',
+    poster: null as null | { image: string; pdf: string; alt: string; width: number; height: number },
+  },
+
+  /**
+   * Extras for past terms on the Past Industries archive. Add a term here
+   * when it ends if its showcase poster should stay linked.
+   */
+  pastTerms: {
+    'Spring 2026': { showcasePoster: '/showcase/comm130-showcase-sp26.pdf' },
+  } as Record<string, { showcasePoster?: string }>,
 
   institution: 'Lane Community College',
-  course: 'COMM 130 — Business and Professional Communication',
+  courseCode: 'COMM 130',
+  course: 'COMM 130: Business and Professional Communication',
 } as const;

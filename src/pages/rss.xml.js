@@ -11,7 +11,7 @@ export async function GET(context) {
     posts.map(async (post) => {
       const biz = await getEntry(post.data.business);
       return {
-        title: `${post.data.title} — ${biz.data.name}`,
+        title: `${post.data.title} | ${biz.data.name}`,
         pubDate: post.data.date,
         description: biz.data.tagline,
         link: `/posts/${post.slug}/`,
@@ -20,7 +20,7 @@ export async function GET(context) {
   );
 
   return rss({
-    title: `${site.name} — ${site.tagline}`,
+    title: `${site.name} | ${site.tagline}`,
     description: site.description,
     site: context.site,
     items,

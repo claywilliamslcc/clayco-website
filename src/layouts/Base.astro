@@ -8,7 +8,7 @@ interface Props {
 }
 
 const { title, description } = Astro.props;
-const fullTitle = title ? `${title} — ${site.name}` : `${site.name} — ${site.tagline}`;
+const fullTitle = title ? `${title} | ${site.name}` : `${site.name} | ${site.tagline}`;
 const desc = description ?? site.description;
 ---
 
@@ -32,10 +32,10 @@ const desc = description ?? site.description;
   <a class="skip" href="#main">Skip to content</a>
 
   <main id="main">
-    <h1 class="visually-hidden">{title ?? `${site.name} — ${site.tagline}`}</h1>
+    <h1 class="visually-hidden">{title ?? `${site.name}: ${site.tagline}`}</h1>
     <header class="masthead" role="banner">
       <a href="/" class="logo-link" aria-label={`${site.name} home`}>
-        <img class="logo" src="/logo.jpg" alt={`${site.name} — ${site.tagline}`} width="932" height="326" />
+        <img class="logo" src="/logo.jpg" alt={`${site.name}: ${site.tagline}`} width="932" height="326" />
       </a>
       <nav class="primary" aria-label="Primary">
         <a href="/#industries">Industries</a>
@@ -50,7 +50,7 @@ const desc = description ?? site.description;
     <slot />
 
     <footer>
-      A {site.course.split('—')[0].trim()} project · {site.institution} · {site.currentTerm} ·
+      A {site.courseCode} project · {site.institution} · {site.currentTerm} ·
       <a href={`mailto:${site.email}`}>{site.email}</a>
     </footer>
   </main>

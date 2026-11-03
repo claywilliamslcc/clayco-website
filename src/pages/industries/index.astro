@@ -1,0 +1,122 @@
+---
+import Base from '../../layouts/Base.astro';
+import { site } from '../../site.config';
+import { getIndustriesByTerm, plural, taglineWithLocation, termAnchor } from '../../lib/terms';
+
+const { current, past } = await getIndustriesByTerm();
+const showPast = site.showPastIndustries && past.length > 0;
+---
+
+<Base
+  title="Industries"
+  description="Every student-run business that has published under the ClayCo umbrella, organized by term."
+>
+  <article class="article">
+    <h2 class="section-h">Industries</h2>
+    <p class="intro">
+      Every student-run business that has published under the ClayCo umbrella, organized by term.
+      Pages and posts stay live at the same addresses after a term ends.
+    </p>
+
+    <section class="term-block" id={termAnchor(site.currentTerm)} aria-labelledby="current-h">
+      <h3 id="current-h">{site.currentTerm} <span class="term-status">· Current</span></h3>
+      {current ? (
+        <>
+          <p class="term-meta">
+            {plural(current.businesses.length, 'industry', 'industries')} · {plural(current.postCount, 'post')}
+          </p>
+          <ul>
+            {current.businesses.map((b) => (
+              <li>
+                <a href={`/industries/${b.slug}`}>{b.data.name}</a>
+                <span class="desc">{taglineWithLocation(b.data.tagline, b.data.location)}</span>
+              </li>
+            ))}
+          </ul>
+        </>
+      ) : (
+        <p class="empty-state">
+          {site.currentTerm} industries will appear here as groups launch their businesses.
+        </p>
+      )}
+    </section>
+
+    {showPast && (
+      <>
+        <h2 class="section-h past-h" id="past">Past Industries</h2>
+        {past.map((t) => {
+          const poster = site.pastTerms[t.term]?.showcasePoster;
+          return (
+            <section class="term-block" id={t.anchor} aria-labelledby={`${t.anchor}-h`}>
+              <h3 id={`${t.anchor}-h`}>{t.term}</h3>
+              <p class="term-meta">
+                {plural(t.businesses.length, 'industry', 'industries')} · {plural(t.postCount, 'post')}
+                {poster && (
+                  <>
+                    {' · '}<a href={poster}>Showcase poster (PDF)</a>
+                  </>
+                )}
+              </p>
+              <ul>
+                {t.businesses.map((b) => (
+                  <li>
+                    <a href={`/industries/${b.slug}`}>{b.data.name}</a>
+                    <span class="desc">{taglineWithLocation(b.data.tagline, b.data.location)}</span>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          );
+        })}
+      </>
+    )}
+  </article>
+</Base>
+
+<style>
+  .intro {
+    text-align: center;
+    color: var(--soft);
+    font-size: 0.95rem;
+    margin: 0 0 0.5rem;
+  }
+  .past-h {
+    margin-top: 3rem;
+  }
+  .term-block {
+    margin-top: 1.75rem;
+  }
+  .term-block h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin: 0;
+  }
+  .term-status {
+    font-weight: 400;
+    color: var(--soft);
+  }
+  .term-meta {
+    color: var(--soft);
+    font-size: 0.9rem;
+    margin: 0.15rem 0 0.6rem;
+  }
+  .term-block ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+  }
+  .term-block li {
+    padding: 0.55rem 0;
+    line-height: 1.45;
+    border-bottom: 1px dotted var(--rule);
+  }
+  .term-block li:last-child {
+    border-bottom: 0;
+  }
+  .term-block .desc {
+    display: block;
+    color: var(--soft);
+    font-size: 0.9rem;
+    margin-top: 0.1rem;
+  }
+</style>

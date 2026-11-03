@@ -2,6 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import { getCollection } from 'astro:content';
 import { site } from '../../site.config';
+import { termAnchor } from '../../lib/terms';
 
 export async function getStaticPaths() {
   const businesses = await getCollection('businesses');
@@ -32,7 +33,7 @@ const status = isCurrent ? 'Active' : 'Archived';
   <article class="article">
     <h1 class="post-title">{business.data.name}</h1>
     <p class="post-meta">
-      {business.data.tagline} · {business.data.location} · {business.data.term} · {status}
+      {business.data.tagline} · {business.data.location} · <a href={`/industries#${termAnchor(business.data.term)}`}>{business.data.term}</a> · {status}
     </p>
 
     <div class="post-body">

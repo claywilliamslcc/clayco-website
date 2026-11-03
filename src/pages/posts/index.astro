@@ -31,7 +31,7 @@ const typeLabel = { blog: 'Blog', social: 'Social', video: 'Promo Video' } as co
           <li>
             <span class="date">{fmtShort(post.data.date)} ·</span>
             <a href={`/posts/${post.slug}`}>{typeLabel[post.data.type]}: {post.data.title}</a>
-            <span class="biz">— {biz.data.name}</span>
+            <span class="biz">by {biz.data.name}</span>
           </li>
         ))}
       </ul>
