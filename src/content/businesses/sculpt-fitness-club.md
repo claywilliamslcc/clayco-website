@@ -1,5 +1,5 @@
 ---
-name: "Sculpt Fitness Club "
+name: Sculpt Fitness Center
 tagline: "Where Wellness Brings Us Together "
 description: >
   Become Your Own Standard: The True Luxury Is Health. By bringing luxury
