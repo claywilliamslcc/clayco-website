@@ -7,5 +7,5 @@ location: West Hollywood, CA
 term: Fall 2026
 founded: 2026-10-20
 external:
-  website: http:// opulentexpeditions .tilda.ws
+  website: http://opulentexpeditions.tilda.ws
 ---
