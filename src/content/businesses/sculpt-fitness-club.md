@@ -10,4 +10,6 @@ description: >
 location: Miami, FL
 term: Fall 2026
 founded: 2026-10-20
+external:
+  website: https://scupltfitness.tilda.ws/
 ---
