@@ -7,7 +7,7 @@ image: /uploads/logo-2.0.png
 ---
 
 
-Are you tired of overpaying for rent and being stuck in the same place? Worry no more! Go to our newsletter and website and check out our opening day catalog of affordable mobile tiny homes!
+Are you tired of overpaying for rent and being stuck in the same place? Worry no more! Go to our website and check out our opening day catalog of affordable mobile tiny homes!
 
 
 
